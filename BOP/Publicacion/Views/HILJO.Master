@@ -1,0 +1,15 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HILJO.master.cs" Inherits="HILJO.Views.HILJO" %>
+
+<html lang="es">
+<head runat="server"> 
+    <title><%: Page.Title %> - HILJO</title>
+     <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body >
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder> 
+</body>
+</html>

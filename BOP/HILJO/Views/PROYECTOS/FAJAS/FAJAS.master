@@ -1,0 +1,7 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/PROYECTOS/PROYECTOS.master" 
+    AutoEventWireup="true" CodeBehind="FAJAS.master.cs" 
+    Inherits="BOP.Views.PROYECTOS.FAJAS.FAJAS" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="CPHPROYECTOS" runat="server">
+    <asp:ContentPlaceHolder ID="CPHFAJAS" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
