@@ -1,0 +1,194 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/HILJO.Master" AutoEventWireup="true" 
+    CodeBehind="Aplicacion.master.cs" Inherits="HILJO.Views.Aplicacion.Aplicacion" %>
+
+
+<asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../plugins/images/favicon.png">
+
+        <title></title>
+        <!-- Bootstrap Core CSS -->
+        <link href="../../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link href="../../../plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <!-- Menu CSS -->
+        <link href="../../../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+        <link href="../../../plugins/bower_components/tablesaw-master/dist/tablesaw.css" rel="stylesheet">
+        <!-- toast CSS -->
+        <link href="../../../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+        <!-- morris CSS -->
+        <link href="../../../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+        <!-- chartist CSS -->
+        <link href="../../../plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+        <link href="../../../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+        <!-- Calendar CSS -->
+        <link href="../../../plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
+        
+        <link href="../../../plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
+          <link href="../../../plugins/bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+  
+         
+
+        <!-- animation CSS -->
+        <link href="../../../css/animate.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="../../../css/style.css" rel="stylesheet">
+        <!-- color CSS -->
+        <link href="../../../css/colors/default.css" id="theme" rel="stylesheet">
+    </head>
+
+    <body class="fix-header">
+
+        <div id="wrapper">
+             <nav class="navbar navbar-default navbar-static-top m-b-0">
+                <div class="navbar-header">
+                    <div class="top-left-part">
+                        <!-- Logo -->
+                        <a class="logo" href="index.html">
+                            <b style="padding-top: 14px;"> 
+                                <img src="../../../plugins/images/iglu.png" alt="home" class="light-logo" />
+                            </b>
+                            <span class="hidden-xs"> 
+                                <img src="../../../plugins/images/name.png" alt="home" class="light-logo" />
+                            </span></a>
+
+                    </div>
+                    <!-- Search input and Toggle icon -->
+                    <ul class="nav navbar-top-links navbar-left">
+                        <li><a class="open-close waves-effect waves-light"><i style="line-height: 59px;" class="ti-menu"></i></a></li>
+
+                    </ul>
+                    <ul class="nav navbar-top-links navbar-right pull-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+                                <img src="../../../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b>  </b><span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-user animated flipInY">
+                                <li>
+                                    <div class="dw-user-box">
+                                        <div class="u-img">
+                                            <img src="../../../plugins/images/users/varun.jpg" alt="user" />
+                                        </div>
+                                        <div class="u-text">
+                                            <h4>Steave Jobs</h4>
+                                            <p class="text-muted">varun@gmail.com</p>
+                                            <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li role="separator" class="divider"></li>
+
+                                <li><a href="#"><i class="ti-user"></i>My Profile</a></li>
+                                <li><a href="#"><i class="ti-wallet"></i>My Balance</a></li>
+                                <li><a href="#"><i class="ti-email"></i>Inbox</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="ti-settings"></i>Account Setting</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="fa fa-power-off"></i>Logout</a></li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+
+                        <!-- /.dropdown -->
+                    </ul>
+                </div>
+                <!-- /.navbar-header -->
+                <!-- /.navbar-top-links -->
+                <!-- /.navbar-static-side -->
+            </nav>
+            <!-- End Top Navigation -->
+            <!-- ============================================================== -->
+            <!-- Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- ============================================================== -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav slimscrollsidebar">
+                    <div class="sidebar-head">
+                        <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span><span class="hide-menu">Navigation</span></h3>
+                    </div>
+                    <ul class="nav" id="side-menu">
+                    
+                        
+                         
+                         <li><a runat="server" href="~/Views/Aplicacion/Administrador/Administrador.aspx" class="waves-effect"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Conf. Generales</span></a> </li>
+                         
+
+                        <li><a runat="server" href="~/Views/Aplicacion/Clientes/Clientes.aspx" class="waves-effect"><i class="mdi mdi-account-multiple fa-fw"></i><span class="hide-menu">Clientes</span></a> </li>
+                        <li><a runat="server" href="~/Views/Aplicacion/Proveedores/Proveedores.aspx" class="waves-effect"><i class="mdi mdi-account-multiple fa-fw"></i><span class="hide-menu">Proveedores</span></a> </li>
+                        <li><a runat="server" href="~/Views/Aplicacion/Empleados/Empleados.aspx" class="waves-effect"><i class="mdi mdi-account-multiple fa-fw"></i><span class="hide-menu">Empleados</span></a> </li>
+                        
+                        <li><a runat="server" href="~/Views/Aplicacion/Productos/Productos.aspx" class="waves-effect"><i class="mdi mdi-cube fa-fw"></i><span class="hide-menu">Productos</span></a> </li>
+                        <li><a runat="server" href="~/Views/Aplicacion/Insumos/Insumos.aspx" class="waves-effect"><i class="mdi mdi-hexagon-multiple fa-fw"></i><span class="hide-menu">Insumos</span></a> </li>
+                        <li><a runat="server" href="~/Views/Aplicacion/Activos/Activos.aspx" class="waves-effect"><i class="mdi mdi-codepen fa-fw"></i><span class="hide-menu">Activos</span></a> </li>
+                        <li><a runat="server" href="~/Views/Aplicacion/Administrador/Administrador.aspx" class="waves-effect"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Conf. Generales</span></a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Left Sidebar -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Page Content -->
+            <!-- ============================================================== -->
+            <div id="page-wrapper">
+                <form runat="server" data-toggle="validator">
+                    <asp:ScriptManager runat="server" ID="ScriptManager" ></asp:ScriptManager>
+                    <asp:ContentPlaceHolder ID="CPHAplicacion" runat="server">
+                        
+        
+                    </asp:ContentPlaceHolder>
+                
+                </form>
+                <footer class="footer text-center">2017 &copy; Desarrollado por Eduardo Venegas Ceciliano - Bopoop </footer>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page Content -->
+            <!-- ============================================================== -->
+        </div>
+
+     <script src="../../../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../../../bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Menu Plugin JavaScript -->
+        <script src="../../../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+        <!--slimscroll JavaScript -->
+        <script src="../../../js/jquery.slimscroll.js"></script>
+        <!--Wave Effects -->
+        <script src="../../../js/waves.js"></script>
+
+        <!-- chartist chart -->
+        <script src="../../../plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+        <script src="../../../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+        <!-- Sparkline chart JavaScript -->
+        <script src="../../../plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../../../js/custom.min.js"></script>
+        <script src="../../../js/validator.js"></script>
+
+        <!--Style Switcher -->
+        <script src="../../../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+        <!-- start - This is for export functionality only -->
+        <script src="../../../plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+    <!-- jQuery peity -->
+    <script src="../../../plugins/bower_components/tablesaw-master/dist/tablesaw.js"></script>
+    <script src="../../../plugins/bower_components/tablesaw-master/dist/tablesaw-init.js"></script>
+
+        <script src="../../../plugins/bower_components/custom-select/custom-select.min.js" type="text/javascript"></script>
+        <script src="../../../plugins/bower_components/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+        
+        <script src="../../../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    </body>
+    </html>
+</asp:Content>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.75, 11.25" name="FAJA_MODEL">
+  <DataContextMoniker Name="/FAJA_MODELDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f7fc858f-1e44-4fb8-a87f-5d3bd93803ec" absoluteBounds="6.75, 3.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Buy_Bill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31bfe805-30fe-45ba-b77c-44c34b2249c7" absoluteBounds="6.765, 4.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="da7a7d2a-ad38-4583-875c-bb7702b2248c" absoluteBounds="8.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d460754d-baee-4088-8a92-d20809bdf05a" absoluteBounds="8.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="01a46a7e-2006-40f1-bd4a-1649ce3a28b3" absoluteBounds="3.5, 8.5, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Company" />
+      <nestedChildShapes>
+        <elementListCompartment Id="025a4d9f-90aa-40d8-9247-0de101a8a320" absoluteBounds="3.515, 8.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="63d9e799-d021-41a1-9c2d-ac7d536881e8" absoluteBounds="9.5, 3.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Detail_Buy_Bill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e211ce0-ec93-4ebd-89d7-57caf4a1545f" absoluteBounds="9.515, 4.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5babd6eb-2767-47b7-b21e-ee335f1f791c" absoluteBounds="9, 1.125, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Detail_Sale_Bill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d73a6454-fa08-4cf1-82d3-5c870b44db5d" absoluteBounds="9.015, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ef0ab459-c4e1-481c-8a4d-ba5c6aa57c3b" absoluteBounds="3.5, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b1050e6-9563-44c5-9a7d-d8e35c1c28a5" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2d91c42e-2021-42df-a412-44d64d083122" absoluteBounds="3.5, 4, 2, 1.193992513020834">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Product_Color" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3ee8c83a-c53f-4623-9f3f-70ded5b5efda" absoluteBounds="3.515, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3749c6d8-2f14-4d46-bc25-0721a442d224" absoluteBounds="6.25, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Product_Detail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="216ff6ed-5b17-447c-b115-ecdd3daff90b" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0ab9eae2-0c63-4bf9-bc98-b95b47097cfa" absoluteBounds="3.5, 5.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Product_Size" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f76fb138-b5e2-4e1d-987b-364b7c232a1b" absoluteBounds="3.515, 6.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40c6ba3a-915c-4196-b3f6-15204b77562e" absoluteBounds="0.75, 1.375, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Product_Type" />
+      <nestedChildShapes>
+        <elementListCompartment Id="57b3cc74-bf4d-48c5-9bb6-db73454a8082" absoluteBounds="0.765, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="92b8e70f-53a3-4272-90a8-5297d657db3c" absoluteBounds="6.25, 7.875, 2, 3.1170068359375014">
+      <DataClassMoniker Name="/FAJA_MODELDataContext/Sale_Bill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad2e404f-1e2e-4f02-b528-71738921b0b8" absoluteBounds="6.265, 8.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.75 : 4.66429768880208); (8.91666666666667 : 4.66429768880208 : JumpStart); (9.08333333333333 : 4.66429768880208 : JumpEnd); (9.5 : 4.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Buy_Bill/Buy_Bill_Detail_Buy_Bill" />
+      <nodes>
+        <classShapeMoniker Id="f7fc858f-1e44-4fb8-a87f-5d3bd93803ec" />
+        <classShapeMoniker Id="63d9e799-d021-41a1-9c2d-ac7d536881e8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 2.03929768880208); (8.66666666666667 : 2.03929768880208 : JumpStart); (8.83333333333333 : 2.03929768880208 : JumpEnd); (9 : 2.03929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Product_Detail/Product_Detail_Detail_Sale_Bill" />
+      <nodes>
+        <classShapeMoniker Id="3749c6d8-2f14-4d46-bc25-0721a442d224" />
+        <classShapeMoniker Id="5babd6eb-2767-47b7-b21e-ee335f1f791c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.03929768880208); (6.25 : 2.03929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Product/Product_Product_Detail" />
+      <nodes>
+        <classShapeMoniker Id="ef0ab459-c4e1-481c-8a4d-ba5c6aa57c3b" />
+        <classShapeMoniker Id="3749c6d8-2f14-4d46-bc25-0721a442d224" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4); (5.875 : 3.625); (5.875 : 2.46519853320312); (6.25 : 2.46519853320312)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Product_Color/Product_Color_Product_Detail" />
+      <nodes>
+        <classShapeMoniker Id="2d91c42e-2021-42df-a412-44d64d083122" />
+        <classShapeMoniker Id="3749c6d8-2f14-4d46-bc25-0721a442d224" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.47199625651042); (6.46875 : 6.47199625651042); (6.46875 : 2.82859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Product_Size/Product_Size_Product_Detail" />
+      <nodes>
+        <classShapeMoniker Id="0ab9eae2-0c63-4bf9-bc98-b95b47097cfa" />
+        <classShapeMoniker Id="3749c6d8-2f14-4d46-bc25-0721a442d224" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.97199625651042); (3.5 : 1.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Product_Type/Product_Type_Product" />
+      <nodes>
+        <classShapeMoniker Id="40c6ba3a-915c-4196-b3f6-15204b77562e" />
+        <classShapeMoniker Id="ef0ab459-c4e1-481c-8a4d-ba5c6aa57c3b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.3593745 : 7.875); (7.3593745 : 5.70359537760417); (9 : 5.70359537760417); (9 : 3.14589680989583); (8.75 : 3.14589680989583); (8.75 : 1.55089684440104); (9 : 1.55089684440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Sale_Bill/Sale_Bill_Detail_Sale_Bill" />
+      <nodes>
+        <classShapeMoniker Id="92b8e70f-53a3-4272-90a8-5297d657db3c" />
+        <classShapeMoniker Id="5babd6eb-2767-47b7-b21e-ee335f1f791c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.48159912109375); (6.25 : 9.48159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FAJA_MODELDataContext/Company/Company_Sale_Bill" />
+      <nodes>
+        <classShapeMoniker Id="01a46a7e-2006-40f1-bd4a-1649ce3a28b3" />
+        <classShapeMoniker Id="92b8e70f-53a3-4272-90a8-5297d657db3c" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
