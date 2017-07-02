@@ -54,6 +54,25 @@ namespace BOP.BL.FAJAS.Seguridad
 
         }
 
+        public bool Login(string User, String Pass)
+        {
+
+            FAJA_MODELDataContext dc = new FAJA_MODELDataContext();
+            Usuarios Usuario = new Usuarios();
+            try
+            {    Usuario = (from c in dc.Usuarios
+                           where c.Use_Name == User && c.Use_Password == Pass
+                           select c).First();
+            }
+            catch(Exception e)
+            {
+
+            }
+            if (Usuario.Use_Name != null)  return true;
+             
+            else return false;
+
+        }
 
     }
 }

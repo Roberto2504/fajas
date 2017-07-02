@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="HILJO.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BOP.Default" %>
 <!DOCTYPE html> 
 <html> 
-<% Response.Redirect("Views/Aplicacion/Administrador/Administrador.aspx");%>
+<% Response.Redirect("Views/PROYECTOS/FAJAS/Login/Login.aspx");%>
     <body></body>
 </html>

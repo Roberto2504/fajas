@@ -33,9 +33,9 @@ namespace BOP.BO
     partial void InsertBuy_Bill(Buy_Bill instance);
     partial void UpdateBuy_Bill(Buy_Bill instance);
     partial void DeleteBuy_Bill(Buy_Bill instance);
-    partial void InsertUsuarios(Usuarios instance);
-    partial void UpdateUsuarios(Usuarios instance);
-    partial void DeleteUsuarios(Usuarios instance);
+    partial void InsertSale_Bill(Sale_Bill instance);
+    partial void UpdateSale_Bill(Sale_Bill instance);
+    partial void DeleteSale_Bill(Sale_Bill instance);
     partial void InsertCompany(Company instance);
     partial void UpdateCompany(Company instance);
     partial void DeleteCompany(Company instance);
@@ -60,13 +60,13 @@ namespace BOP.BO
     partial void InsertProduct_Type(Product_Type instance);
     partial void UpdateProduct_Type(Product_Type instance);
     partial void DeleteProduct_Type(Product_Type instance);
-    partial void InsertSale_Bill(Sale_Bill instance);
-    partial void UpdateSale_Bill(Sale_Bill instance);
-    partial void DeleteSale_Bill(Sale_Bill instance);
+    partial void InsertUsuarios(Usuarios instance);
+    partial void UpdateUsuarios(Usuarios instance);
+    partial void DeleteUsuarios(Usuarios instance);
     #endregion
 		
 		//public FAJA_MODELDataContext() : 
-		//		base(global::BOP.BO.Properties.Settings.Default.FAJAS_BDConnectionString, mappingSource)
+		//		base(global::BOP.BO.Properties.Settings.Default.FAJAS_BDConnectionString1, mappingSource)
 		//{
 		//	OnCreated();
 		//}
@@ -103,11 +103,11 @@ namespace BOP.BO
 			}
 		}
 		
-		public System.Data.Linq.Table<Usuarios> Usuarios
+		public System.Data.Linq.Table<Sale_Bill> Sale_Bill
 		{
 			get
 			{
-				return this.GetTable<Usuarios>();
+				return this.GetTable<Sale_Bill>();
 			}
 		}
 		
@@ -175,19 +175,47 @@ namespace BOP.BO
 			}
 		}
 		
-		public System.Data.Linq.Table<Sale_Bill> Sale_Bill
+		public System.Data.Linq.Table<Usuarios> Usuarios
 		{
 			get
 			{
-				return this.GetTable<Sale_Bill>();
+				return this.GetTable<Usuarios>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarUsuarios")]
-		public ISingleResult<BOP_FAJAS_spListarUsuariosResult> BOP_FAJAS_spListarUsuarios()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spBuscarProductos")]
+		public ISingleResult<BOP_FAJAS_spBuscarProductosResult> BOP_FAJAS_spBuscarProductos([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> color, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> size)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<BOP_FAJAS_spListarUsuariosResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), color, size);
+			return ((ISingleResult<BOP_FAJAS_spBuscarProductosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spReporteVentaRangoFechas")]
+		public ISingleResult<BOP_FAJAS_spReporteVentaRangoFechasResult> BOP_FAJAS_spReporteVentaRangoFechas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Final", DbType="DateTime")] System.Nullable<System.DateTime> final)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), inicio, final);
+			return ((ISingleResult<BOP_FAJAS_spReporteVentaRangoFechasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spCuerpoVenta")]
+		public ISingleResult<BOP_FAJAS_spCuerpoVentaResult> BOP_FAJAS_spCuerpoVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Venta", DbType="Int")] System.Nullable<int> venta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), venta);
+			return ((ISingleResult<BOP_FAJAS_spCuerpoVentaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spEncabezadoVenta")]
+		public ISingleResult<BOP_FAJAS_spEncabezadoVentaResult> BOP_FAJAS_spEncabezadoVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Venta", DbType="Int")] System.Nullable<int> venta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), venta);
+			return ((ISingleResult<BOP_FAJAS_spEncabezadoVentaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarDetalleCompras")]
+		public ISingleResult<BOP_FAJAS_spListarDetalleComprasResult> BOP_FAJAS_spListarDetalleCompras([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PK_BILL", DbType="Int")] System.Nullable<int> pK_BILL, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estado", DbType="VarChar(1)")] string estado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pK_BILL, estado);
+			return ((ISingleResult<BOP_FAJAS_spListarDetalleComprasResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarDetalleProductos")]
@@ -197,11 +225,11 @@ namespace BOP.BO
 			return ((ISingleResult<BOP_FAJAS_spListarDetalleProductosResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarProductos")]
-		public ISingleResult<BOP_FAJAS_spListarProductosResult> BOP_FAJAS_spListarProductos()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarDetalleVentas")]
+		public ISingleResult<BOP_FAJAS_spListarDetalleVentasResult> BOP_FAJAS_spListarDetalleVentas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PK_BILL", DbType="Int")] System.Nullable<int> pK_BILL)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<BOP_FAJAS_spListarProductosResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pK_BILL);
+			return ((ISingleResult<BOP_FAJAS_spListarDetalleVentasResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarProducto")]
@@ -209,6 +237,27 @@ namespace BOP.BO
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pK_PRODUCTO);
 			return ((ISingleResult<BOP_FAJAS_spListarProductoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarProductos")]
+		public ISingleResult<BOP_FAJAS_spListarProductosResult> BOP_FAJAS_spListarProductos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<BOP_FAJAS_spListarProductosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spListarUsuarios")]
+		public ISingleResult<BOP_FAJAS_spListarUsuariosResult> BOP_FAJAS_spListarUsuarios()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<BOP_FAJAS_spListarUsuariosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BOP_FAJAS_spReporteCompraRangoFechas")]
+		public ISingleResult<BOP_FAJAS_spReporteCompraRangoFechasResult> BOP_FAJAS_spReporteCompraRangoFechas([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Inicio", DbType="DateTime")] System.Nullable<System.DateTime> inicio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Final", DbType="DateTime")] System.Nullable<System.DateTime> final)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), inicio, final);
+			return ((ISingleResult<BOP_FAJAS_spReporteCompraRangoFechasResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -226,6 +275,8 @@ namespace BOP.BO
 		
 		private int _BuyBil_PK;
 		
+		private string _BuyBil_Status;
+		
 		private EntitySet<Detail_Buy_Bill> _Detail_Buy_Bill;
 		
     #region Definiciones de métodos de extensibilidad
@@ -240,6 +291,8 @@ namespace BOP.BO
     partial void OnBuyBil_TotalChanged();
     partial void OnBuyBil_PKChanging(int value);
     partial void OnBuyBil_PKChanged();
+    partial void OnBuyBil_StatusChanging(string value);
+    partial void OnBuyBil_StatusChanged();
     #endregion
 		
 		public Buy_Bill()
@@ -268,7 +321,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Description", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Description", DbType="NVarChar(100)")]
 		public string BuyBil_Description
 		{
 			get
@@ -328,6 +381,26 @@ namespace BOP.BO
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Status", DbType="NVarChar(1)")]
+		public string BuyBil_Status
+		{
+			get
+			{
+				return this._BuyBil_Status;
+			}
+			set
+			{
+				if ((this._BuyBil_Status != value))
+				{
+					this.OnBuyBil_StatusChanging(value);
+					this.SendPropertyChanging();
+					this._BuyBil_Status = value;
+					this.SendPropertyChanged("BuyBil_Status");
+					this.OnBuyBil_StatusChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Buy_Bill_Detail_Buy_Bill", Storage="_Detail_Buy_Bill", ThisKey="BuyBil_PK", OtherKey="DetBuyBil_FK_BuyBil")]
 		public EntitySet<Detail_Buy_Bill> Detail_Buy_Bill
 		{
@@ -374,91 +447,388 @@ namespace BOP.BO
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuarios")]
-	public partial class Usuarios : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sale_Bill")]
+	public partial class Sale_Bill : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Use_Name;
+		private string _SalBil_ClientName;
 		
-		private string _Use_Password;
+		private string _SalBil_IdClient;
 		
-		private int _Use_PK;
+		private string _SalBil_PhoneClient;
+		
+		private string _SalBil_Description;
+		
+		private double _SalBil_GrossTotal;
+		
+		private double _SalBil_Tax;
+		
+		private double _SalBil_NetTotal;
+		
+		private string _SalBil_ClientEmail;
+		
+		private System.Nullable<double> _SalBil_Discount;
+		
+		private System.DateTime _SalBil_Date;
+		
+		private int _SalBil_Pk;
+		
+		private int _SalBil_FK_Com;
+		
+		private string _SalBil_Status;
+		
+		private EntitySet<Detail_Sale_Bill> _Detail_Sale_Bill;
+		
+		private EntityRef<Company> _Company;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUse_NameChanging(string value);
-    partial void OnUse_NameChanged();
-    partial void OnUse_PasswordChanging(string value);
-    partial void OnUse_PasswordChanged();
-    partial void OnUse_PKChanging(int value);
-    partial void OnUse_PKChanged();
+    partial void OnSalBil_ClientNameChanging(string value);
+    partial void OnSalBil_ClientNameChanged();
+    partial void OnSalBil_IdClientChanging(string value);
+    partial void OnSalBil_IdClientChanged();
+    partial void OnSalBil_PhoneClientChanging(string value);
+    partial void OnSalBil_PhoneClientChanged();
+    partial void OnSalBil_DescriptionChanging(string value);
+    partial void OnSalBil_DescriptionChanged();
+    partial void OnSalBil_GrossTotalChanging(double value);
+    partial void OnSalBil_GrossTotalChanged();
+    partial void OnSalBil_TaxChanging(double value);
+    partial void OnSalBil_TaxChanged();
+    partial void OnSalBil_NetTotalChanging(double value);
+    partial void OnSalBil_NetTotalChanged();
+    partial void OnSalBil_ClientEmailChanging(string value);
+    partial void OnSalBil_ClientEmailChanged();
+    partial void OnSalBil_DiscountChanging(System.Nullable<double> value);
+    partial void OnSalBil_DiscountChanged();
+    partial void OnSalBil_DateChanging(System.DateTime value);
+    partial void OnSalBil_DateChanged();
+    partial void OnSalBil_PkChanging(int value);
+    partial void OnSalBil_PkChanged();
+    partial void OnSalBil_FK_ComChanging(int value);
+    partial void OnSalBil_FK_ComChanged();
+    partial void OnSalBil_StatusChanging(string value);
+    partial void OnSalBil_StatusChanged();
     #endregion
 		
-		public Usuarios()
+		public Sale_Bill()
 		{
+			this._Detail_Sale_Bill = new EntitySet<Detail_Sale_Bill>(new Action<Detail_Sale_Bill>(this.attach_Detail_Sale_Bill), new Action<Detail_Sale_Bill>(this.detach_Detail_Sale_Bill));
+			this._Company = default(EntityRef<Company>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Name", DbType="NChar(20)")]
-		public string Use_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientName", DbType="NVarChar(50)")]
+		public string SalBil_ClientName
 		{
 			get
 			{
-				return this._Use_Name;
+				return this._SalBil_ClientName;
 			}
 			set
 			{
-				if ((this._Use_Name != value))
+				if ((this._SalBil_ClientName != value))
 				{
-					this.OnUse_NameChanging(value);
+					this.OnSalBil_ClientNameChanging(value);
 					this.SendPropertyChanging();
-					this._Use_Name = value;
-					this.SendPropertyChanged("Use_Name");
-					this.OnUse_NameChanged();
+					this._SalBil_ClientName = value;
+					this.SendPropertyChanged("SalBil_ClientName");
+					this.OnSalBil_ClientNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Password", DbType="NChar(20)")]
-		public string Use_Password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_IdClient", DbType="NVarChar(50)")]
+		public string SalBil_IdClient
 		{
 			get
 			{
-				return this._Use_Password;
+				return this._SalBil_IdClient;
 			}
 			set
 			{
-				if ((this._Use_Password != value))
+				if ((this._SalBil_IdClient != value))
 				{
-					this.OnUse_PasswordChanging(value);
+					this.OnSalBil_IdClientChanging(value);
 					this.SendPropertyChanging();
-					this._Use_Password = value;
-					this.SendPropertyChanged("Use_Password");
-					this.OnUse_PasswordChanged();
+					this._SalBil_IdClient = value;
+					this.SendPropertyChanged("SalBil_IdClient");
+					this.OnSalBil_IdClientChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_PK", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Use_PK
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_PhoneClient", DbType="NVarChar(50)")]
+		public string SalBil_PhoneClient
 		{
 			get
 			{
-				return this._Use_PK;
+				return this._SalBil_PhoneClient;
 			}
 			set
 			{
-				if ((this._Use_PK != value))
+				if ((this._SalBil_PhoneClient != value))
 				{
-					this.OnUse_PKChanging(value);
+					this.OnSalBil_PhoneClientChanging(value);
 					this.SendPropertyChanging();
-					this._Use_PK = value;
-					this.SendPropertyChanged("Use_PK");
-					this.OnUse_PKChanged();
+					this._SalBil_PhoneClient = value;
+					this.SendPropertyChanged("SalBil_PhoneClient");
+					this.OnSalBil_PhoneClientChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Description", DbType="NVarChar(50)")]
+		public string SalBil_Description
+		{
+			get
+			{
+				return this._SalBil_Description;
+			}
+			set
+			{
+				if ((this._SalBil_Description != value))
+				{
+					this.OnSalBil_DescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Description = value;
+					this.SendPropertyChanged("SalBil_Description");
+					this.OnSalBil_DescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_GrossTotal", DbType="Float NOT NULL")]
+		public double SalBil_GrossTotal
+		{
+			get
+			{
+				return this._SalBil_GrossTotal;
+			}
+			set
+			{
+				if ((this._SalBil_GrossTotal != value))
+				{
+					this.OnSalBil_GrossTotalChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_GrossTotal = value;
+					this.SendPropertyChanged("SalBil_GrossTotal");
+					this.OnSalBil_GrossTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Tax", DbType="Float NOT NULL")]
+		public double SalBil_Tax
+		{
+			get
+			{
+				return this._SalBil_Tax;
+			}
+			set
+			{
+				if ((this._SalBil_Tax != value))
+				{
+					this.OnSalBil_TaxChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Tax = value;
+					this.SendPropertyChanged("SalBil_Tax");
+					this.OnSalBil_TaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_NetTotal", DbType="Float NOT NULL")]
+		public double SalBil_NetTotal
+		{
+			get
+			{
+				return this._SalBil_NetTotal;
+			}
+			set
+			{
+				if ((this._SalBil_NetTotal != value))
+				{
+					this.OnSalBil_NetTotalChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_NetTotal = value;
+					this.SendPropertyChanged("SalBil_NetTotal");
+					this.OnSalBil_NetTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientEmail", DbType="NVarChar(50)")]
+		public string SalBil_ClientEmail
+		{
+			get
+			{
+				return this._SalBil_ClientEmail;
+			}
+			set
+			{
+				if ((this._SalBil_ClientEmail != value))
+				{
+					this.OnSalBil_ClientEmailChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_ClientEmail = value;
+					this.SendPropertyChanged("SalBil_ClientEmail");
+					this.OnSalBil_ClientEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Discount", DbType="Float")]
+		public System.Nullable<double> SalBil_Discount
+		{
+			get
+			{
+				return this._SalBil_Discount;
+			}
+			set
+			{
+				if ((this._SalBil_Discount != value))
+				{
+					this.OnSalBil_DiscountChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Discount = value;
+					this.SendPropertyChanged("SalBil_Discount");
+					this.OnSalBil_DiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime SalBil_Date
+		{
+			get
+			{
+				return this._SalBil_Date;
+			}
+			set
+			{
+				if ((this._SalBil_Date != value))
+				{
+					this.OnSalBil_DateChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Date = value;
+					this.SendPropertyChanged("SalBil_Date");
+					this.OnSalBil_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Pk", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int SalBil_Pk
+		{
+			get
+			{
+				return this._SalBil_Pk;
+			}
+			set
+			{
+				if ((this._SalBil_Pk != value))
+				{
+					this.OnSalBil_PkChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Pk = value;
+					this.SendPropertyChanged("SalBil_Pk");
+					this.OnSalBil_PkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_FK_Com", DbType="Int NOT NULL")]
+		public int SalBil_FK_Com
+		{
+			get
+			{
+				return this._SalBil_FK_Com;
+			}
+			set
+			{
+				if ((this._SalBil_FK_Com != value))
+				{
+					if (this._Company.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSalBil_FK_ComChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_FK_Com = value;
+					this.SendPropertyChanged("SalBil_FK_Com");
+					this.OnSalBil_FK_ComChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Status", DbType="NVarChar(1)")]
+		public string SalBil_Status
+		{
+			get
+			{
+				return this._SalBil_Status;
+			}
+			set
+			{
+				if ((this._SalBil_Status != value))
+				{
+					this.OnSalBil_StatusChanging(value);
+					this.SendPropertyChanging();
+					this._SalBil_Status = value;
+					this.SendPropertyChanged("SalBil_Status");
+					this.OnSalBil_StatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_Bill_Detail_Sale_Bill", Storage="_Detail_Sale_Bill", ThisKey="SalBil_Pk", OtherKey="DetBil_FK_BuyBil")]
+		public EntitySet<Detail_Sale_Bill> Detail_Sale_Bill
+		{
+			get
+			{
+				return this._Detail_Sale_Bill;
+			}
+			set
+			{
+				this._Detail_Sale_Bill.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Company_Sale_Bill", Storage="_Company", ThisKey="SalBil_FK_Com", OtherKey="Com_PK", IsForeignKey=true)]
+		public Company Company
+		{
+			get
+			{
+				return this._Company.Entity;
+			}
+			set
+			{
+				Company previousValue = this._Company.Entity;
+				if (((previousValue != value) 
+							|| (this._Company.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Company.Entity = null;
+						previousValue.Sale_Bill.Remove(this);
+					}
+					this._Company.Entity = value;
+					if ((value != null))
+					{
+						value.Sale_Bill.Add(this);
+						this._SalBil_FK_Com = value.Com_PK;
+					}
+					else
+					{
+						this._SalBil_FK_Com = default(int);
+					}
+					this.SendPropertyChanged("Company");
 				}
 			}
 		}
@@ -481,6 +851,18 @@ namespace BOP.BO
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Detail_Sale_Bill(Detail_Sale_Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale_Bill = this;
+		}
+		
+		private void detach_Detail_Sale_Bill(Detail_Sale_Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale_Bill = null;
 		}
 	}
 	
@@ -528,7 +910,7 @@ namespace BOP.BO
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Name", DbType="NVarChar(100)")]
 		public string Com_Name
 		{
 			get
@@ -548,7 +930,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Id", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Id", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Com_Id
 		{
 			get
@@ -568,7 +950,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Phone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Phone", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Com_Phone
 		{
 			get
@@ -588,7 +970,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Com_Email
 		{
 			get
@@ -608,7 +990,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_NickName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_NickName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Com_NickName
 		{
 			get
@@ -700,7 +1082,7 @@ namespace BOP.BO
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private double _DetBuyBil_Quantity;
+		private System.Nullable<int> _DetBuyBil_Quantity;
 		
 		private double _DetBuyBil_BuyPrice;
 		
@@ -708,13 +1090,19 @@ namespace BOP.BO
 		
 		private System.Nullable<int> _DetBuyBil_FK_BuyBil;
 		
+		private int _DetBuyBil_FK_DetPro;
+		
+		private string _DetBuyBil_Status;
+		
 		private EntityRef<Buy_Bill> _Buy_Bill;
+		
+		private EntityRef<Product_Detail> _Product_Detail;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnDetBuyBil_QuantityChanging(double value);
+    partial void OnDetBuyBil_QuantityChanging(System.Nullable<int> value);
     partial void OnDetBuyBil_QuantityChanged();
     partial void OnDetBuyBil_BuyPriceChanging(double value);
     partial void OnDetBuyBil_BuyPriceChanged();
@@ -722,16 +1110,21 @@ namespace BOP.BO
     partial void OnDetBuyBil_PKChanged();
     partial void OnDetBuyBil_FK_BuyBilChanging(System.Nullable<int> value);
     partial void OnDetBuyBil_FK_BuyBilChanged();
+    partial void OnDetBuyBil_FK_DetProChanging(int value);
+    partial void OnDetBuyBil_FK_DetProChanged();
+    partial void OnDetBuyBil_StatusChanging(string value);
+    partial void OnDetBuyBil_StatusChanged();
     #endregion
 		
 		public Detail_Buy_Bill()
 		{
 			this._Buy_Bill = default(EntityRef<Buy_Bill>);
+			this._Product_Detail = default(EntityRef<Product_Detail>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_Quantity", DbType="Float NOT NULL")]
-		public double DetBuyBil_Quantity
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_Quantity", DbType="Int")]
+		public System.Nullable<int> DetBuyBil_Quantity
 		{
 			get
 			{
@@ -814,6 +1207,50 @@ namespace BOP.BO
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_FK_DetPro", DbType="Int NOT NULL")]
+		public int DetBuyBil_FK_DetPro
+		{
+			get
+			{
+				return this._DetBuyBil_FK_DetPro;
+			}
+			set
+			{
+				if ((this._DetBuyBil_FK_DetPro != value))
+				{
+					if (this._Product_Detail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDetBuyBil_FK_DetProChanging(value);
+					this.SendPropertyChanging();
+					this._DetBuyBil_FK_DetPro = value;
+					this.SendPropertyChanged("DetBuyBil_FK_DetPro");
+					this.OnDetBuyBil_FK_DetProChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_Status", DbType="NVarChar(1)")]
+		public string DetBuyBil_Status
+		{
+			get
+			{
+				return this._DetBuyBil_Status;
+			}
+			set
+			{
+				if ((this._DetBuyBil_Status != value))
+				{
+					this.OnDetBuyBil_StatusChanging(value);
+					this.SendPropertyChanging();
+					this._DetBuyBil_Status = value;
+					this.SendPropertyChanged("DetBuyBil_Status");
+					this.OnDetBuyBil_StatusChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Buy_Bill_Detail_Buy_Bill", Storage="_Buy_Bill", ThisKey="DetBuyBil_FK_BuyBil", OtherKey="BuyBil_PK", IsForeignKey=true)]
 		public Buy_Bill Buy_Bill
 		{
@@ -844,6 +1281,40 @@ namespace BOP.BO
 						this._DetBuyBil_FK_BuyBil = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Buy_Bill");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Detail_Detail_Buy_Bill", Storage="_Product_Detail", ThisKey="DetBuyBil_FK_DetPro", OtherKey="ProDet_PK", IsForeignKey=true)]
+		public Product_Detail Product_Detail
+		{
+			get
+			{
+				return this._Product_Detail.Entity;
+			}
+			set
+			{
+				Product_Detail previousValue = this._Product_Detail.Entity;
+				if (((previousValue != value) 
+							|| (this._Product_Detail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product_Detail.Entity = null;
+						previousValue.Detail_Buy_Bill.Remove(this);
+					}
+					this._Product_Detail.Entity = value;
+					if ((value != null))
+					{
+						value.Detail_Buy_Bill.Add(this);
+						this._DetBuyBil_FK_DetPro = value.ProDet_PK;
+					}
+					else
+					{
+						this._DetBuyBil_FK_DetPro = default(int);
+					}
+					this.SendPropertyChanged("Product_Detail");
 				}
 			}
 		}
@@ -885,9 +1356,9 @@ namespace BOP.BO
 		
 		private int _DetBil_FK_ProDet;
 		
-		private EntityRef<Product_Detail> _Product_Detail;
-		
 		private EntityRef<Sale_Bill> _Sale_Bill;
+		
+		private EntityRef<Product_Detail> _Product_Detail;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -907,8 +1378,8 @@ namespace BOP.BO
 		
 		public Detail_Sale_Bill()
 		{
-			this._Product_Detail = default(EntityRef<Product_Detail>);
 			this._Sale_Bill = default(EntityRef<Sale_Bill>);
+			this._Product_Detail = default(EntityRef<Product_Detail>);
 			OnCreated();
 		}
 		
@@ -1020,40 +1491,6 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Detail_Detail_Sale_Bill", Storage="_Product_Detail", ThisKey="DetBil_FK_ProDet", OtherKey="ProDet_PK", IsForeignKey=true)]
-		public Product_Detail Product_Detail
-		{
-			get
-			{
-				return this._Product_Detail.Entity;
-			}
-			set
-			{
-				Product_Detail previousValue = this._Product_Detail.Entity;
-				if (((previousValue != value) 
-							|| (this._Product_Detail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Product_Detail.Entity = null;
-						previousValue.Detail_Sale_Bill.Remove(this);
-					}
-					this._Product_Detail.Entity = value;
-					if ((value != null))
-					{
-						value.Detail_Sale_Bill.Add(this);
-						this._DetBil_FK_ProDet = value.ProDet_PK;
-					}
-					else
-					{
-						this._DetBil_FK_ProDet = default(int);
-					}
-					this.SendPropertyChanged("Product_Detail");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_Bill_Detail_Sale_Bill", Storage="_Sale_Bill", ThisKey="DetBil_FK_BuyBil", OtherKey="SalBil_Pk", IsForeignKey=true)]
 		public Sale_Bill Sale_Bill
 		{
@@ -1084,6 +1521,40 @@ namespace BOP.BO
 						this._DetBil_FK_BuyBil = default(int);
 					}
 					this.SendPropertyChanged("Sale_Bill");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Detail_Detail_Sale_Bill", Storage="_Product_Detail", ThisKey="DetBil_FK_ProDet", OtherKey="ProDet_PK", IsForeignKey=true)]
+		public Product_Detail Product_Detail
+		{
+			get
+			{
+				return this._Product_Detail.Entity;
+			}
+			set
+			{
+				Product_Detail previousValue = this._Product_Detail.Entity;
+				if (((previousValue != value) 
+							|| (this._Product_Detail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product_Detail.Entity = null;
+						previousValue.Detail_Sale_Bill.Remove(this);
+					}
+					this._Product_Detail.Entity = value;
+					if ((value != null))
+					{
+						value.Detail_Sale_Bill.Add(this);
+						this._DetBil_FK_ProDet = value.ProDet_PK;
+					}
+					else
+					{
+						this._DetBil_FK_ProDet = default(int);
+					}
+					this.SendPropertyChanged("Product_Detail");
 				}
 			}
 		}
@@ -1129,6 +1600,8 @@ namespace BOP.BO
 		
 		private int _Pro_Fk_ProTyp;
 		
+		private string _Pro_Status;
+		
 		private EntitySet<Product_Detail> _Product_Detail;
 		
 		private EntityRef<Product_Type> _Product_Type;
@@ -1151,6 +1624,8 @@ namespace BOP.BO
     partial void OnPro_PkChanged();
     partial void OnPro_Fk_ProTypChanging(int value);
     partial void OnPro_Fk_ProTypChanged();
+    partial void OnPro_StatusChanging(string value);
+    partial void OnPro_StatusChanged();
     #endregion
 		
 		public Product()
@@ -1160,7 +1635,7 @@ namespace BOP.BO
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
 		public string Pro_Name
 		{
 			get
@@ -1180,7 +1655,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
 		public string Pro_Description
 		{
 			get
@@ -1200,7 +1675,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Pro_Code
 		{
 			get
@@ -1220,7 +1695,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Photo", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Photo", DbType="NVarChar(50)")]
 		public string Pro_Photo
 		{
 			get
@@ -1300,6 +1775,26 @@ namespace BOP.BO
 					this._Pro_Fk_ProTyp = value;
 					this.SendPropertyChanged("Pro_Fk_ProTyp");
 					this.OnPro_Fk_ProTypChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Status", DbType="NVarChar(1)")]
+		public string Pro_Status
+		{
+			get
+			{
+				return this._Pro_Status;
+			}
+			set
+			{
+				if ((this._Pro_Status != value))
+				{
+					this.OnPro_StatusChanging(value);
+					this.SendPropertyChanging();
+					this._Pro_Status = value;
+					this.SendPropertyChanged("Pro_Status");
+					this.OnPro_StatusChanged();
 				}
 			}
 		}
@@ -1412,7 +1907,7 @@ namespace BOP.BO
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string ProCol_Name
 		{
 			get
@@ -1452,7 +1947,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Color_Product_Detail", Storage="_Product_Detail", ThisKey="ProCol_PK", OtherKey="ProDet_FKk_Pro")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Color_Product_Detail", Storage="_Product_Detail", ThisKey="ProCol_PK", OtherKey="ProDet_FK_ProCol")]
 		public EntitySet<Product_Detail> Product_Detail
 		{
 			get
@@ -1512,6 +2007,12 @@ namespace BOP.BO
 		
 		private int _ProDet_PK;
 		
+		private System.Nullable<int> _ProDet_Quantity;
+		
+		private string _ProDet_Status;
+		
+		private EntitySet<Detail_Buy_Bill> _Detail_Buy_Bill;
+		
 		private EntitySet<Detail_Sale_Bill> _Detail_Sale_Bill;
 		
 		private EntityRef<Product> _Product;
@@ -1532,10 +2033,15 @@ namespace BOP.BO
     partial void OnProDet_FKk_ProChanged();
     partial void OnProDet_PKChanging(int value);
     partial void OnProDet_PKChanged();
+    partial void OnProDet_QuantityChanging(System.Nullable<int> value);
+    partial void OnProDet_QuantityChanged();
+    partial void OnProDet_StatusChanging(string value);
+    partial void OnProDet_StatusChanged();
     #endregion
 		
 		public Product_Detail()
 		{
+			this._Detail_Buy_Bill = new EntitySet<Detail_Buy_Bill>(new Action<Detail_Buy_Bill>(this.attach_Detail_Buy_Bill), new Action<Detail_Buy_Bill>(this.detach_Detail_Buy_Bill));
 			this._Detail_Sale_Bill = new EntitySet<Detail_Sale_Bill>(new Action<Detail_Sale_Bill>(this.attach_Detail_Sale_Bill), new Action<Detail_Sale_Bill>(this.detach_Detail_Sale_Bill));
 			this._Product = default(EntityRef<Product>);
 			this._Product_Color = default(EntityRef<Product_Color>);
@@ -1554,6 +2060,10 @@ namespace BOP.BO
 			{
 				if ((this._ProDet_FK_ProCol != value))
 				{
+					if (this._Product_Color.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnProDet_FK_ProColChanging(value);
 					this.SendPropertyChanging();
 					this._ProDet_FK_ProCol = value;
@@ -1594,8 +2104,7 @@ namespace BOP.BO
 			{
 				if ((this._ProDet_FKk_Pro != value))
 				{
-					if (((this._Product.HasLoadedOrAssignedValue || this._Product_Color.HasLoadedOrAssignedValue) 
-								|| this._Product_Size.HasLoadedOrAssignedValue))
+					if ((this._Product.HasLoadedOrAssignedValue || this._Product_Size.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1625,6 +2134,59 @@ namespace BOP.BO
 					this.SendPropertyChanged("ProDet_PK");
 					this.OnProDet_PKChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProDet_Quantity", DbType="Int")]
+		public System.Nullable<int> ProDet_Quantity
+		{
+			get
+			{
+				return this._ProDet_Quantity;
+			}
+			set
+			{
+				if ((this._ProDet_Quantity != value))
+				{
+					this.OnProDet_QuantityChanging(value);
+					this.SendPropertyChanging();
+					this._ProDet_Quantity = value;
+					this.SendPropertyChanged("ProDet_Quantity");
+					this.OnProDet_QuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProDet_Status", DbType="NVarChar(1)")]
+		public string ProDet_Status
+		{
+			get
+			{
+				return this._ProDet_Status;
+			}
+			set
+			{
+				if ((this._ProDet_Status != value))
+				{
+					this.OnProDet_StatusChanging(value);
+					this.SendPropertyChanging();
+					this._ProDet_Status = value;
+					this.SendPropertyChanged("ProDet_Status");
+					this.OnProDet_StatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Detail_Detail_Buy_Bill", Storage="_Detail_Buy_Bill", ThisKey="ProDet_PK", OtherKey="DetBuyBil_FK_DetPro")]
+		public EntitySet<Detail_Buy_Bill> Detail_Buy_Bill
+		{
+			get
+			{
+				return this._Detail_Buy_Bill;
+			}
+			set
+			{
+				this._Detail_Buy_Bill.Assign(value);
 			}
 		}
 		
@@ -1675,7 +2237,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Color_Product_Detail", Storage="_Product_Color", ThisKey="ProDet_FKk_Pro", OtherKey="ProCol_PK", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Color_Product_Detail", Storage="_Product_Color", ThisKey="ProDet_FK_ProCol", OtherKey="ProCol_PK", IsForeignKey=true)]
 		public Product_Color Product_Color
 		{
 			get
@@ -1698,11 +2260,11 @@ namespace BOP.BO
 					if ((value != null))
 					{
 						value.Product_Detail.Add(this);
-						this._ProDet_FKk_Pro = value.ProCol_PK;
+						this._ProDet_FK_ProCol = value.ProCol_PK;
 					}
 					else
 					{
-						this._ProDet_FKk_Pro = default(int);
+						this._ProDet_FK_ProCol = default(int);
 					}
 					this.SendPropertyChanged("Product_Color");
 				}
@@ -1763,6 +2325,18 @@ namespace BOP.BO
 			}
 		}
 		
+		private void attach_Detail_Buy_Bill(Detail_Buy_Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product_Detail = this;
+		}
+		
+		private void detach_Detail_Buy_Bill(Detail_Buy_Bill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product_Detail = null;
+		}
+		
 		private void attach_Detail_Sale_Bill(Detail_Sale_Bill entity)
 		{
 			this.SendPropertyChanging();
@@ -1804,7 +2378,7 @@ namespace BOP.BO
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Siz_Name
 		{
 			get
@@ -1918,7 +2492,7 @@ namespace BOP.BO
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(200)")]
 		public string ProTyp_Name
 		{
 			get
@@ -2004,364 +2578,91 @@ namespace BOP.BO
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sale_Bill")]
-	public partial class Sale_Bill : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuarios")]
+	public partial class Usuarios : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _SalBil_ClientName;
+		private string _Use_Name;
 		
-		private string _SalBil_IdClient;
+		private string _Use_Password;
 		
-		private string _SalBil_PhoneClient;
-		
-		private string _SalBil_Description;
-		
-		private double _SalBil_GrossTotal;
-		
-		private double _SalBil_Tax;
-		
-		private double _SalBil_NetTotal;
-		
-		private string _SalBil_ClientEmail;
-		
-		private System.Nullable<double> _SalBil_Discount;
-		
-		private System.DateTime _SalBil_Date;
-		
-		private int _SalBil_Pk;
-		
-		private int _SalBil_FK_Com;
-		
-		private EntitySet<Detail_Sale_Bill> _Detail_Sale_Bill;
-		
-		private EntityRef<Company> _Company;
+		private int _Use_PK;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnSalBil_ClientNameChanging(string value);
-    partial void OnSalBil_ClientNameChanged();
-    partial void OnSalBil_IdClientChanging(string value);
-    partial void OnSalBil_IdClientChanged();
-    partial void OnSalBil_PhoneClientChanging(string value);
-    partial void OnSalBil_PhoneClientChanged();
-    partial void OnSalBil_DescriptionChanging(string value);
-    partial void OnSalBil_DescriptionChanged();
-    partial void OnSalBil_GrossTotalChanging(double value);
-    partial void OnSalBil_GrossTotalChanged();
-    partial void OnSalBil_TaxChanging(double value);
-    partial void OnSalBil_TaxChanged();
-    partial void OnSalBil_NetTotalChanging(double value);
-    partial void OnSalBil_NetTotalChanged();
-    partial void OnSalBil_ClientEmailChanging(string value);
-    partial void OnSalBil_ClientEmailChanged();
-    partial void OnSalBil_DiscountChanging(System.Nullable<double> value);
-    partial void OnSalBil_DiscountChanged();
-    partial void OnSalBil_DateChanging(System.DateTime value);
-    partial void OnSalBil_DateChanged();
-    partial void OnSalBil_PkChanging(int value);
-    partial void OnSalBil_PkChanged();
-    partial void OnSalBil_FK_ComChanging(int value);
-    partial void OnSalBil_FK_ComChanged();
+    partial void OnUse_NameChanging(string value);
+    partial void OnUse_NameChanged();
+    partial void OnUse_PasswordChanging(string value);
+    partial void OnUse_PasswordChanged();
+    partial void OnUse_PKChanging(int value);
+    partial void OnUse_PKChanged();
     #endregion
 		
-		public Sale_Bill()
+		public Usuarios()
 		{
-			this._Detail_Sale_Bill = new EntitySet<Detail_Sale_Bill>(new Action<Detail_Sale_Bill>(this.attach_Detail_Sale_Bill), new Action<Detail_Sale_Bill>(this.detach_Detail_Sale_Bill));
-			this._Company = default(EntityRef<Company>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientName", DbType="VarChar(50)")]
-		public string SalBil_ClientName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Use_Name
 		{
 			get
 			{
-				return this._SalBil_ClientName;
+				return this._Use_Name;
 			}
 			set
 			{
-				if ((this._SalBil_ClientName != value))
+				if ((this._Use_Name != value))
 				{
-					this.OnSalBil_ClientNameChanging(value);
+					this.OnUse_NameChanging(value);
 					this.SendPropertyChanging();
-					this._SalBil_ClientName = value;
-					this.SendPropertyChanged("SalBil_ClientName");
-					this.OnSalBil_ClientNameChanged();
+					this._Use_Name = value;
+					this.SendPropertyChanged("Use_Name");
+					this.OnUse_NameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_IdClient", DbType="VarChar(50)")]
-		public string SalBil_IdClient
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Use_Password
 		{
 			get
 			{
-				return this._SalBil_IdClient;
+				return this._Use_Password;
 			}
 			set
 			{
-				if ((this._SalBil_IdClient != value))
+				if ((this._Use_Password != value))
 				{
-					this.OnSalBil_IdClientChanging(value);
+					this.OnUse_PasswordChanging(value);
 					this.SendPropertyChanging();
-					this._SalBil_IdClient = value;
-					this.SendPropertyChanged("SalBil_IdClient");
-					this.OnSalBil_IdClientChanged();
+					this._Use_Password = value;
+					this.SendPropertyChanged("Use_Password");
+					this.OnUse_PasswordChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_PhoneClient", DbType="VarChar(50)")]
-		public string SalBil_PhoneClient
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_PK", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Use_PK
 		{
 			get
 			{
-				return this._SalBil_PhoneClient;
+				return this._Use_PK;
 			}
 			set
 			{
-				if ((this._SalBil_PhoneClient != value))
+				if ((this._Use_PK != value))
 				{
-					this.OnSalBil_PhoneClientChanging(value);
+					this.OnUse_PKChanging(value);
 					this.SendPropertyChanging();
-					this._SalBil_PhoneClient = value;
-					this.SendPropertyChanged("SalBil_PhoneClient");
-					this.OnSalBil_PhoneClientChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Description", DbType="VarChar(50)")]
-		public string SalBil_Description
-		{
-			get
-			{
-				return this._SalBil_Description;
-			}
-			set
-			{
-				if ((this._SalBil_Description != value))
-				{
-					this.OnSalBil_DescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_Description = value;
-					this.SendPropertyChanged("SalBil_Description");
-					this.OnSalBil_DescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_GrossTotal", DbType="Float NOT NULL")]
-		public double SalBil_GrossTotal
-		{
-			get
-			{
-				return this._SalBil_GrossTotal;
-			}
-			set
-			{
-				if ((this._SalBil_GrossTotal != value))
-				{
-					this.OnSalBil_GrossTotalChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_GrossTotal = value;
-					this.SendPropertyChanged("SalBil_GrossTotal");
-					this.OnSalBil_GrossTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Tax", DbType="Float NOT NULL")]
-		public double SalBil_Tax
-		{
-			get
-			{
-				return this._SalBil_Tax;
-			}
-			set
-			{
-				if ((this._SalBil_Tax != value))
-				{
-					this.OnSalBil_TaxChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_Tax = value;
-					this.SendPropertyChanged("SalBil_Tax");
-					this.OnSalBil_TaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_NetTotal", DbType="Float NOT NULL")]
-		public double SalBil_NetTotal
-		{
-			get
-			{
-				return this._SalBil_NetTotal;
-			}
-			set
-			{
-				if ((this._SalBil_NetTotal != value))
-				{
-					this.OnSalBil_NetTotalChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_NetTotal = value;
-					this.SendPropertyChanged("SalBil_NetTotal");
-					this.OnSalBil_NetTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientEmail", DbType="VarChar(50)")]
-		public string SalBil_ClientEmail
-		{
-			get
-			{
-				return this._SalBil_ClientEmail;
-			}
-			set
-			{
-				if ((this._SalBil_ClientEmail != value))
-				{
-					this.OnSalBil_ClientEmailChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_ClientEmail = value;
-					this.SendPropertyChanged("SalBil_ClientEmail");
-					this.OnSalBil_ClientEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Discount", DbType="Float")]
-		public System.Nullable<double> SalBil_Discount
-		{
-			get
-			{
-				return this._SalBil_Discount;
-			}
-			set
-			{
-				if ((this._SalBil_Discount != value))
-				{
-					this.OnSalBil_DiscountChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_Discount = value;
-					this.SendPropertyChanged("SalBil_Discount");
-					this.OnSalBil_DiscountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime SalBil_Date
-		{
-			get
-			{
-				return this._SalBil_Date;
-			}
-			set
-			{
-				if ((this._SalBil_Date != value))
-				{
-					this.OnSalBil_DateChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_Date = value;
-					this.SendPropertyChanged("SalBil_Date");
-					this.OnSalBil_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Pk", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int SalBil_Pk
-		{
-			get
-			{
-				return this._SalBil_Pk;
-			}
-			set
-			{
-				if ((this._SalBil_Pk != value))
-				{
-					this.OnSalBil_PkChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_Pk = value;
-					this.SendPropertyChanged("SalBil_Pk");
-					this.OnSalBil_PkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_FK_Com", DbType="Int NOT NULL")]
-		public int SalBil_FK_Com
-		{
-			get
-			{
-				return this._SalBil_FK_Com;
-			}
-			set
-			{
-				if ((this._SalBil_FK_Com != value))
-				{
-					if (this._Company.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSalBil_FK_ComChanging(value);
-					this.SendPropertyChanging();
-					this._SalBil_FK_Com = value;
-					this.SendPropertyChanged("SalBil_FK_Com");
-					this.OnSalBil_FK_ComChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_Bill_Detail_Sale_Bill", Storage="_Detail_Sale_Bill", ThisKey="SalBil_Pk", OtherKey="DetBil_FK_BuyBil")]
-		public EntitySet<Detail_Sale_Bill> Detail_Sale_Bill
-		{
-			get
-			{
-				return this._Detail_Sale_Bill;
-			}
-			set
-			{
-				this._Detail_Sale_Bill.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Company_Sale_Bill", Storage="_Company", ThisKey="SalBil_FK_Com", OtherKey="Com_PK", IsForeignKey=true)]
-		public Company Company
-		{
-			get
-			{
-				return this._Company.Entity;
-			}
-			set
-			{
-				Company previousValue = this._Company.Entity;
-				if (((previousValue != value) 
-							|| (this._Company.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Company.Entity = null;
-						previousValue.Sale_Bill.Remove(this);
-					}
-					this._Company.Entity = value;
-					if ((value != null))
-					{
-						value.Sale_Bill.Add(this);
-						this._SalBil_FK_Com = value.Com_PK;
-					}
-					else
-					{
-						this._SalBil_FK_Com = default(int);
-					}
-					this.SendPropertyChanged("Company");
+					this._Use_PK = value;
+					this.SendPropertyChanged("Use_PK");
+					this.OnUse_PKChanged();
 				}
 			}
 		}
@@ -2385,86 +2686,14 @@ namespace BOP.BO
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Detail_Sale_Bill(Detail_Sale_Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Sale_Bill = this;
-		}
-		
-		private void detach_Detail_Sale_Bill(Detail_Sale_Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Sale_Bill = null;
-		}
 	}
 	
-	public partial class BOP_FAJAS_spListarUsuariosResult
-	{
-		
-		private int _Use_PK;
-		
-		private string _Use_Name;
-		
-		private string _Use_Password;
-		
-		public BOP_FAJAS_spListarUsuariosResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_PK", DbType="Int NOT NULL")]
-		public int Use_PK
-		{
-			get
-			{
-				return this._Use_PK;
-			}
-			set
-			{
-				if ((this._Use_PK != value))
-				{
-					this._Use_PK = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Name", DbType="NChar(20)")]
-		public string Use_Name
-		{
-			get
-			{
-				return this._Use_Name;
-			}
-			set
-			{
-				if ((this._Use_Name != value))
-				{
-					this._Use_Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Password", DbType="NChar(20)")]
-		public string Use_Password
-		{
-			get
-			{
-				return this._Use_Password;
-			}
-			set
-			{
-				if ((this._Use_Password != value))
-				{
-					this._Use_Password = value;
-				}
-			}
-		}
-	}
-	
-	public partial class BOP_FAJAS_spListarDetalleProductosResult
+	public partial class BOP_FAJAS_spBuscarProductosResult
 	{
 		
 		private int _ProDet_PK;
+		
+		private System.Nullable<int> _ProDet_Quantity;
 		
 		private int _Pro_Pk;
 		
@@ -2492,7 +2721,7 @@ namespace BOP.BO
 		
 		private string _ProTyp_Name;
 		
-		public BOP_FAJAS_spListarDetalleProductosResult()
+		public BOP_FAJAS_spBuscarProductosResult()
 		{
 		}
 		
@@ -2508,6 +2737,22 @@ namespace BOP.BO
 				if ((this._ProDet_PK != value))
 				{
 					this._ProDet_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProDet_Quantity", DbType="Int")]
+		public System.Nullable<int> ProDet_Quantity
+		{
+			get
+			{
+				return this._ProDet_Quantity;
+			}
+			set
+			{
+				if ((this._ProDet_Quantity != value))
+				{
+					this._ProDet_Quantity = value;
 				}
 			}
 		}
@@ -2560,7 +2805,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
 		public string Pro_Description
 		{
 			get
@@ -2576,7 +2821,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
 		public string Pro_Name
 		{
 			get
@@ -2704,7 +2949,1557 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(200)")]
+		public string ProTyp_Name
+		{
+			get
+			{
+				return this._ProTyp_Name;
+			}
+			set
+			{
+				if ((this._ProTyp_Name != value))
+				{
+					this._ProTyp_Name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spReporteVentaRangoFechasResult
+	{
+		
+		private System.Nullable<System.DateTime> _FechaInicio;
+		
+		private System.Nullable<System.DateTime> _FechaFinal;
+		
+		private string _SalBil_ClientEmail;
+		
+		private string _SalBil_PhoneClient;
+		
+		private string _SalBil_IdClient;
+		
+		private string _SalBil_ClientName;
+		
+		private System.DateTime _SalBil_Date;
+		
+		private string _SalBil_Description;
+		
+		private System.Nullable<double> _SalBil_Discount;
+		
+		private double _SalBil_GrossTotal;
+		
+		private double _SalBil_NetTotal;
+		
+		private double _SalBil_Tax;
+		
+		private int _SalBil_Pk;
+		
+		public BOP_FAJAS_spReporteVentaRangoFechasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInicio
+		{
+			get
+			{
+				return this._FechaInicio;
+			}
+			set
+			{
+				if ((this._FechaInicio != value))
+				{
+					this._FechaInicio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaFinal", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaFinal
+		{
+			get
+			{
+				return this._FechaFinal;
+			}
+			set
+			{
+				if ((this._FechaFinal != value))
+				{
+					this._FechaFinal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_ClientEmail
+		{
+			get
+			{
+				return this._SalBil_ClientEmail;
+			}
+			set
+			{
+				if ((this._SalBil_ClientEmail != value))
+				{
+					this._SalBil_ClientEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_PhoneClient", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_PhoneClient
+		{
+			get
+			{
+				return this._SalBil_PhoneClient;
+			}
+			set
+			{
+				if ((this._SalBil_PhoneClient != value))
+				{
+					this._SalBil_PhoneClient = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_IdClient", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_IdClient
+		{
+			get
+			{
+				return this._SalBil_IdClient;
+			}
+			set
+			{
+				if ((this._SalBil_IdClient != value))
+				{
+					this._SalBil_IdClient = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_ClientName
+		{
+			get
+			{
+				return this._SalBil_ClientName;
+			}
+			set
+			{
+				if ((this._SalBil_ClientName != value))
+				{
+					this._SalBil_ClientName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime SalBil_Date
+		{
+			get
+			{
+				return this._SalBil_Date;
+			}
+			set
+			{
+				if ((this._SalBil_Date != value))
+				{
+					this._SalBil_Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Description", DbType="NVarChar(50)")]
+		public string SalBil_Description
+		{
+			get
+			{
+				return this._SalBil_Description;
+			}
+			set
+			{
+				if ((this._SalBil_Description != value))
+				{
+					this._SalBil_Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Discount", DbType="Float")]
+		public System.Nullable<double> SalBil_Discount
+		{
+			get
+			{
+				return this._SalBil_Discount;
+			}
+			set
+			{
+				if ((this._SalBil_Discount != value))
+				{
+					this._SalBil_Discount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_GrossTotal", DbType="Float NOT NULL")]
+		public double SalBil_GrossTotal
+		{
+			get
+			{
+				return this._SalBil_GrossTotal;
+			}
+			set
+			{
+				if ((this._SalBil_GrossTotal != value))
+				{
+					this._SalBil_GrossTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_NetTotal", DbType="Float NOT NULL")]
+		public double SalBil_NetTotal
+		{
+			get
+			{
+				return this._SalBil_NetTotal;
+			}
+			set
+			{
+				if ((this._SalBil_NetTotal != value))
+				{
+					this._SalBil_NetTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Tax", DbType="Float NOT NULL")]
+		public double SalBil_Tax
+		{
+			get
+			{
+				return this._SalBil_Tax;
+			}
+			set
+			{
+				if ((this._SalBil_Tax != value))
+				{
+					this._SalBil_Tax = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Pk", DbType="Int NOT NULL")]
+		public int SalBil_Pk
+		{
+			get
+			{
+				return this._SalBil_Pk;
+			}
+			set
+			{
+				if ((this._SalBil_Pk != value))
+				{
+					this._SalBil_Pk = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spCuerpoVentaResult
+	{
+		
+		private System.Nullable<double> _DetSalBil_Detail;
+		
+		private double _DetSalBil_Quantity;
+		
+		private string _Pro_Code;
+		
+		private string _Pro_Description;
+		
+		private double _Pro_SalePrice;
+		
+		private System.Nullable<double> _neto;
+		
+		private string _Descripcion;
+		
+		public BOP_FAJAS_spCuerpoVentaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetSalBil_Detail", DbType="Float")]
+		public System.Nullable<double> DetSalBil_Detail
+		{
+			get
+			{
+				return this._DetSalBil_Detail;
+			}
+			set
+			{
+				if ((this._DetSalBil_Detail != value))
+				{
+					this._DetSalBil_Detail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetSalBil_Quantity", DbType="Float NOT NULL")]
+		public double DetSalBil_Quantity
+		{
+			get
+			{
+				return this._DetSalBil_Quantity;
+			}
+			set
+			{
+				if ((this._DetSalBil_Quantity != value))
+				{
+					this._DetSalBil_Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Pro_Code
+		{
+			get
+			{
+				return this._Pro_Code;
+			}
+			set
+			{
+				if ((this._Pro_Code != value))
+				{
+					this._Pro_Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
+		public string Pro_Description
+		{
+			get
+			{
+				return this._Pro_Description;
+			}
+			set
+			{
+				if ((this._Pro_Description != value))
+				{
+					this._Pro_Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_SalePrice", DbType="Float NOT NULL")]
+		public double Pro_SalePrice
+		{
+			get
+			{
+				return this._Pro_SalePrice;
+			}
+			set
+			{
+				if ((this._Pro_SalePrice != value))
+				{
+					this._Pro_SalePrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_neto", DbType="Float")]
+		public System.Nullable<double> neto
+		{
+			get
+			{
+				return this._neto;
+			}
+			set
+			{
+				if ((this._neto != value))
+				{
+					this._neto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="NVarChar(101) NOT NULL", CanBeNull=false)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spEncabezadoVentaResult
+	{
+		
+		private string _Com_Email;
+		
+		private string _Com_Id;
+		
+		private string _Com_Name;
+		
+		private string _Com_NickName;
+		
+		private string _Com_Phone;
+		
+		private int _Com_PK;
+		
+		private string _SalBil_ClientEmail;
+		
+		private string _SalBil_PhoneClient;
+		
+		private string _SalBil_IdClient;
+		
+		private string _SalBil_ClientName;
+		
+		private System.DateTime _SalBil_Date;
+		
+		private string _SalBil_Description;
+		
+		private System.Nullable<double> _SalBil_Discount;
+		
+		private double _SalBil_GrossTotal;
+		
+		private double _SalBil_NetTotal;
+		
+		private double _SalBil_Tax;
+		
+		private int _SalBil_Pk;
+		
+		public BOP_FAJAS_spEncabezadoVentaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Com_Email
+		{
+			get
+			{
+				return this._Com_Email;
+			}
+			set
+			{
+				if ((this._Com_Email != value))
+				{
+					this._Com_Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Id", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Com_Id
+		{
+			get
+			{
+				return this._Com_Id;
+			}
+			set
+			{
+				if ((this._Com_Id != value))
+				{
+					this._Com_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Name", DbType="NVarChar(100)")]
+		public string Com_Name
+		{
+			get
+			{
+				return this._Com_Name;
+			}
+			set
+			{
+				if ((this._Com_Name != value))
+				{
+					this._Com_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_NickName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Com_NickName
+		{
+			get
+			{
+				return this._Com_NickName;
+			}
+			set
+			{
+				if ((this._Com_NickName != value))
+				{
+					this._Com_NickName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_Phone", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Com_Phone
+		{
+			get
+			{
+				return this._Com_Phone;
+			}
+			set
+			{
+				if ((this._Com_Phone != value))
+				{
+					this._Com_Phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Com_PK", DbType="Int NOT NULL")]
+		public int Com_PK
+		{
+			get
+			{
+				return this._Com_PK;
+			}
+			set
+			{
+				if ((this._Com_PK != value))
+				{
+					this._Com_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientEmail", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_ClientEmail
+		{
+			get
+			{
+				return this._SalBil_ClientEmail;
+			}
+			set
+			{
+				if ((this._SalBil_ClientEmail != value))
+				{
+					this._SalBil_ClientEmail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_PhoneClient", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_PhoneClient
+		{
+			get
+			{
+				return this._SalBil_PhoneClient;
+			}
+			set
+			{
+				if ((this._SalBil_PhoneClient != value))
+				{
+					this._SalBil_PhoneClient = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_IdClient", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_IdClient
+		{
+			get
+			{
+				return this._SalBil_IdClient;
+			}
+			set
+			{
+				if ((this._SalBil_IdClient != value))
+				{
+					this._SalBil_IdClient = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_ClientName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SalBil_ClientName
+		{
+			get
+			{
+				return this._SalBil_ClientName;
+			}
+			set
+			{
+				if ((this._SalBil_ClientName != value))
+				{
+					this._SalBil_ClientName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime SalBil_Date
+		{
+			get
+			{
+				return this._SalBil_Date;
+			}
+			set
+			{
+				if ((this._SalBil_Date != value))
+				{
+					this._SalBil_Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Description", DbType="NVarChar(50)")]
+		public string SalBil_Description
+		{
+			get
+			{
+				return this._SalBil_Description;
+			}
+			set
+			{
+				if ((this._SalBil_Description != value))
+				{
+					this._SalBil_Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Discount", DbType="Float")]
+		public System.Nullable<double> SalBil_Discount
+		{
+			get
+			{
+				return this._SalBil_Discount;
+			}
+			set
+			{
+				if ((this._SalBil_Discount != value))
+				{
+					this._SalBil_Discount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_GrossTotal", DbType="Float NOT NULL")]
+		public double SalBil_GrossTotal
+		{
+			get
+			{
+				return this._SalBil_GrossTotal;
+			}
+			set
+			{
+				if ((this._SalBil_GrossTotal != value))
+				{
+					this._SalBil_GrossTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_NetTotal", DbType="Float NOT NULL")]
+		public double SalBil_NetTotal
+		{
+			get
+			{
+				return this._SalBil_NetTotal;
+			}
+			set
+			{
+				if ((this._SalBil_NetTotal != value))
+				{
+					this._SalBil_NetTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Tax", DbType="Float NOT NULL")]
+		public double SalBil_Tax
+		{
+			get
+			{
+				return this._SalBil_Tax;
+			}
+			set
+			{
+				if ((this._SalBil_Tax != value))
+				{
+					this._SalBil_Tax = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Pk", DbType="Int NOT NULL")]
+		public int SalBil_Pk
+		{
+			get
+			{
+				return this._SalBil_Pk;
+			}
+			set
+			{
+				if ((this._SalBil_Pk != value))
+				{
+					this._SalBil_Pk = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spListarDetalleComprasResult
+	{
+		
+		private int _DetBuyBil_PK;
+		
+		private System.Nullable<int> _DetBuyBil_Quantity;
+		
+		private double _DetBuyBil_BuyPrice;
+		
+		private int _Pro_Pk;
+		
+		private string _Pro_Name;
+		
+		private string _Pro_Code;
+		
+		private int _Siz_Pk;
+		
+		private string _Siz_Name;
+		
+		private int _ProCol_PK;
+		
+		private string _ProCol_Name;
+		
+		public BOP_FAJAS_spListarDetalleComprasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_PK", DbType="Int NOT NULL")]
+		public int DetBuyBil_PK
+		{
+			get
+			{
+				return this._DetBuyBil_PK;
+			}
+			set
+			{
+				if ((this._DetBuyBil_PK != value))
+				{
+					this._DetBuyBil_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_Quantity", DbType="Int")]
+		public System.Nullable<int> DetBuyBil_Quantity
+		{
+			get
+			{
+				return this._DetBuyBil_Quantity;
+			}
+			set
+			{
+				if ((this._DetBuyBil_Quantity != value))
+				{
+					this._DetBuyBil_Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBuyBil_BuyPrice", DbType="Float NOT NULL")]
+		public double DetBuyBil_BuyPrice
+		{
+			get
+			{
+				return this._DetBuyBil_BuyPrice;
+			}
+			set
+			{
+				if ((this._DetBuyBil_BuyPrice != value))
+				{
+					this._DetBuyBil_BuyPrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Pk", DbType="Int NOT NULL")]
+		public int Pro_Pk
+		{
+			get
+			{
+				return this._Pro_Pk;
+			}
+			set
+			{
+				if ((this._Pro_Pk != value))
+				{
+					this._Pro_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
+		public string Pro_Name
+		{
+			get
+			{
+				return this._Pro_Name;
+			}
+			set
+			{
+				if ((this._Pro_Name != value))
+				{
+					this._Pro_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Pro_Code
+		{
+			get
+			{
+				return this._Pro_Code;
+			}
+			set
+			{
+				if ((this._Pro_Code != value))
+				{
+					this._Pro_Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Pk", DbType="Int NOT NULL")]
+		public int Siz_Pk
+		{
+			get
+			{
+				return this._Siz_Pk;
+			}
+			set
+			{
+				if ((this._Siz_Pk != value))
+				{
+					this._Siz_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Siz_Name
+		{
+			get
+			{
+				return this._Siz_Name;
+			}
+			set
+			{
+				if ((this._Siz_Name != value))
+				{
+					this._Siz_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_PK", DbType="Int NOT NULL")]
+		public int ProCol_PK
+		{
+			get
+			{
+				return this._ProCol_PK;
+			}
+			set
+			{
+				if ((this._ProCol_PK != value))
+				{
+					this._ProCol_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ProCol_Name
+		{
+			get
+			{
+				return this._ProCol_Name;
+			}
+			set
+			{
+				if ((this._ProCol_Name != value))
+				{
+					this._ProCol_Name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spListarDetalleProductosResult
+	{
+		
+		private int _ProDet_PK;
+		
+		private System.Nullable<int> _ProDet_Quantity;
+		
+		private int _Pro_Pk;
+		
+		private int _Pro_Fk_ProTyp;
+		
+		private string _Pro_Code;
+		
+		private string _Pro_Description;
+		
+		private string _Pro_Name;
+		
+		private string _Pro_Photo;
+		
+		private double _Pro_SalePrice;
+		
+		private int _ProCol_PK;
+		
+		private string _ProCol_Name;
+		
+		private int _Siz_Pk;
+		
+		private string _Siz_Name;
+		
+		private int _ProTyp_Pk;
+		
+		private string _ProTyp_Name;
+		
+		public BOP_FAJAS_spListarDetalleProductosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProDet_PK", DbType="Int NOT NULL")]
+		public int ProDet_PK
+		{
+			get
+			{
+				return this._ProDet_PK;
+			}
+			set
+			{
+				if ((this._ProDet_PK != value))
+				{
+					this._ProDet_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProDet_Quantity", DbType="Int")]
+		public System.Nullable<int> ProDet_Quantity
+		{
+			get
+			{
+				return this._ProDet_Quantity;
+			}
+			set
+			{
+				if ((this._ProDet_Quantity != value))
+				{
+					this._ProDet_Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Pk", DbType="Int NOT NULL")]
+		public int Pro_Pk
+		{
+			get
+			{
+				return this._Pro_Pk;
+			}
+			set
+			{
+				if ((this._Pro_Pk != value))
+				{
+					this._Pro_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Fk_ProTyp", DbType="Int NOT NULL")]
+		public int Pro_Fk_ProTyp
+		{
+			get
+			{
+				return this._Pro_Fk_ProTyp;
+			}
+			set
+			{
+				if ((this._Pro_Fk_ProTyp != value))
+				{
+					this._Pro_Fk_ProTyp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Pro_Code
+		{
+			get
+			{
+				return this._Pro_Code;
+			}
+			set
+			{
+				if ((this._Pro_Code != value))
+				{
+					this._Pro_Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
+		public string Pro_Description
+		{
+			get
+			{
+				return this._Pro_Description;
+			}
+			set
+			{
+				if ((this._Pro_Description != value))
+				{
+					this._Pro_Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
+		public string Pro_Name
+		{
+			get
+			{
+				return this._Pro_Name;
+			}
+			set
+			{
+				if ((this._Pro_Name != value))
+				{
+					this._Pro_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Photo", DbType="NVarChar(50)")]
+		public string Pro_Photo
+		{
+			get
+			{
+				return this._Pro_Photo;
+			}
+			set
+			{
+				if ((this._Pro_Photo != value))
+				{
+					this._Pro_Photo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_SalePrice", DbType="Float NOT NULL")]
+		public double Pro_SalePrice
+		{
+			get
+			{
+				return this._Pro_SalePrice;
+			}
+			set
+			{
+				if ((this._Pro_SalePrice != value))
+				{
+					this._Pro_SalePrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_PK", DbType="Int NOT NULL")]
+		public int ProCol_PK
+		{
+			get
+			{
+				return this._ProCol_PK;
+			}
+			set
+			{
+				if ((this._ProCol_PK != value))
+				{
+					this._ProCol_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ProCol_Name
+		{
+			get
+			{
+				return this._ProCol_Name;
+			}
+			set
+			{
+				if ((this._ProCol_Name != value))
+				{
+					this._ProCol_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Pk", DbType="Int NOT NULL")]
+		public int Siz_Pk
+		{
+			get
+			{
+				return this._Siz_Pk;
+			}
+			set
+			{
+				if ((this._Siz_Pk != value))
+				{
+					this._Siz_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Siz_Name
+		{
+			get
+			{
+				return this._Siz_Name;
+			}
+			set
+			{
+				if ((this._Siz_Name != value))
+				{
+					this._Siz_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Pk", DbType="Int NOT NULL")]
+		public int ProTyp_Pk
+		{
+			get
+			{
+				return this._ProTyp_Pk;
+			}
+			set
+			{
+				if ((this._ProTyp_Pk != value))
+				{
+					this._ProTyp_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(200)")]
+		public string ProTyp_Name
+		{
+			get
+			{
+				return this._ProTyp_Name;
+			}
+			set
+			{
+				if ((this._ProTyp_Name != value))
+				{
+					this._ProTyp_Name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spListarDetalleVentasResult
+	{
+		
+		private string _SalBil_Status;
+		
+		private int _DetBil_PK;
+		
+		private System.Nullable<double> _DetSalBil_Detail;
+		
+		private double _DetSalBil_Quantity;
+		
+		private int _DetBil_FK_ProDet;
+		
+		private int _Pro_Pk;
+		
+		private string _Pro_Name;
+		
+		private string _Pro_Code;
+		
+		private double _Pro_SalePrice;
+		
+		private int _Siz_Pk;
+		
+		private string _Siz_Name;
+		
+		private int _ProCol_PK;
+		
+		private string _ProCol_Name;
+		
+		public BOP_FAJAS_spListarDetalleVentasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalBil_Status", DbType="NVarChar(1)")]
+		public string SalBil_Status
+		{
+			get
+			{
+				return this._SalBil_Status;
+			}
+			set
+			{
+				if ((this._SalBil_Status != value))
+				{
+					this._SalBil_Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBil_PK", DbType="Int NOT NULL")]
+		public int DetBil_PK
+		{
+			get
+			{
+				return this._DetBil_PK;
+			}
+			set
+			{
+				if ((this._DetBil_PK != value))
+				{
+					this._DetBil_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetSalBil_Detail", DbType="Float")]
+		public System.Nullable<double> DetSalBil_Detail
+		{
+			get
+			{
+				return this._DetSalBil_Detail;
+			}
+			set
+			{
+				if ((this._DetSalBil_Detail != value))
+				{
+					this._DetSalBil_Detail = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetSalBil_Quantity", DbType="Float NOT NULL")]
+		public double DetSalBil_Quantity
+		{
+			get
+			{
+				return this._DetSalBil_Quantity;
+			}
+			set
+			{
+				if ((this._DetSalBil_Quantity != value))
+				{
+					this._DetSalBil_Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetBil_FK_ProDet", DbType="Int NOT NULL")]
+		public int DetBil_FK_ProDet
+		{
+			get
+			{
+				return this._DetBil_FK_ProDet;
+			}
+			set
+			{
+				if ((this._DetBil_FK_ProDet != value))
+				{
+					this._DetBil_FK_ProDet = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Pk", DbType="Int NOT NULL")]
+		public int Pro_Pk
+		{
+			get
+			{
+				return this._Pro_Pk;
+			}
+			set
+			{
+				if ((this._Pro_Pk != value))
+				{
+					this._Pro_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
+		public string Pro_Name
+		{
+			get
+			{
+				return this._Pro_Name;
+			}
+			set
+			{
+				if ((this._Pro_Name != value))
+				{
+					this._Pro_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Pro_Code
+		{
+			get
+			{
+				return this._Pro_Code;
+			}
+			set
+			{
+				if ((this._Pro_Code != value))
+				{
+					this._Pro_Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_SalePrice", DbType="Float NOT NULL")]
+		public double Pro_SalePrice
+		{
+			get
+			{
+				return this._Pro_SalePrice;
+			}
+			set
+			{
+				if ((this._Pro_SalePrice != value))
+				{
+					this._Pro_SalePrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Pk", DbType="Int NOT NULL")]
+		public int Siz_Pk
+		{
+			get
+			{
+				return this._Siz_Pk;
+			}
+			set
+			{
+				if ((this._Siz_Pk != value))
+				{
+					this._Siz_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Siz_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Siz_Name
+		{
+			get
+			{
+				return this._Siz_Name;
+			}
+			set
+			{
+				if ((this._Siz_Name != value))
+				{
+					this._Siz_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_PK", DbType="Int NOT NULL")]
+		public int ProCol_PK
+		{
+			get
+			{
+				return this._ProCol_PK;
+			}
+			set
+			{
+				if ((this._ProCol_PK != value))
+				{
+					this._ProCol_PK = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProCol_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ProCol_Name
+		{
+			get
+			{
+				return this._ProCol_Name;
+			}
+			set
+			{
+				if ((this._ProCol_Name != value))
+				{
+					this._ProCol_Name = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spListarProductoResult
+	{
+		
+		private int _Pro_Pk;
+		
+		private int _Pro_Fk_ProTyp;
+		
+		private string _Pro_Code;
+		
+		private string _Pro_Description;
+		
+		private string _Pro_Name;
+		
+		private string _Pro_Photo;
+		
+		private double _Pro_SalePrice;
+		
+		private string _ProTyp_Name;
+		
+		public BOP_FAJAS_spListarProductoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Pk", DbType="Int NOT NULL")]
+		public int Pro_Pk
+		{
+			get
+			{
+				return this._Pro_Pk;
+			}
+			set
+			{
+				if ((this._Pro_Pk != value))
+				{
+					this._Pro_Pk = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Fk_ProTyp", DbType="Int NOT NULL")]
+		public int Pro_Fk_ProTyp
+		{
+			get
+			{
+				return this._Pro_Fk_ProTyp;
+			}
+			set
+			{
+				if ((this._Pro_Fk_ProTyp != value))
+				{
+					this._Pro_Fk_ProTyp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Pro_Code
+		{
+			get
+			{
+				return this._Pro_Code;
+			}
+			set
+			{
+				if ((this._Pro_Code != value))
+				{
+					this._Pro_Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
+		public string Pro_Description
+		{
+			get
+			{
+				return this._Pro_Description;
+			}
+			set
+			{
+				if ((this._Pro_Description != value))
+				{
+					this._Pro_Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
+		public string Pro_Name
+		{
+			get
+			{
+				return this._Pro_Name;
+			}
+			set
+			{
+				if ((this._Pro_Name != value))
+				{
+					this._Pro_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Photo", DbType="NVarChar(50)")]
+		public string Pro_Photo
+		{
+			get
+			{
+				return this._Pro_Photo;
+			}
+			set
+			{
+				if ((this._Pro_Photo != value))
+				{
+					this._Pro_Photo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_SalePrice", DbType="Float NOT NULL")]
+		public double Pro_SalePrice
+		{
+			get
+			{
+				return this._Pro_SalePrice;
+			}
+			set
+			{
+				if ((this._Pro_SalePrice != value))
+				{
+					this._Pro_SalePrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(200)")]
 		public string ProTyp_Name
 		{
 			get
@@ -2792,7 +4587,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(200)")]
 		public string Pro_Description
 		{
 			get
@@ -2808,7 +4603,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(200)")]
 		public string Pro_Name
 		{
 			get
@@ -2856,7 +4651,7 @@ namespace BOP.BO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(200)")]
 		public string ProTyp_Name
 		{
 			get
@@ -2873,153 +4668,179 @@ namespace BOP.BO
 		}
 	}
 	
-	public partial class BOP_FAJAS_spListarProductoResult
+	public partial class BOP_FAJAS_spListarUsuariosResult
 	{
 		
-		private int _Pro_Pk;
+		private int _Use_PK;
 		
-		private int _Pro_Fk_ProTyp;
+		private string _Use_Name;
 		
-		private string _Pro_Code;
+		private string _Use_Password;
 		
-		private string _Pro_Description;
-		
-		private string _Pro_Name;
-		
-		private string _Pro_Photo;
-		
-		private double _Pro_SalePrice;
-		
-		private string _ProTyp_Name;
-		
-		public BOP_FAJAS_spListarProductoResult()
+		public BOP_FAJAS_spListarUsuariosResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Pk", DbType="Int NOT NULL")]
-		public int Pro_Pk
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_PK", DbType="Int NOT NULL")]
+		public int Use_PK
 		{
 			get
 			{
-				return this._Pro_Pk;
+				return this._Use_PK;
 			}
 			set
 			{
-				if ((this._Pro_Pk != value))
+				if ((this._Use_PK != value))
 				{
-					this._Pro_Pk = value;
+					this._Use_PK = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Fk_ProTyp", DbType="Int NOT NULL")]
-		public int Pro_Fk_ProTyp
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Name", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Use_Name
 		{
 			get
 			{
-				return this._Pro_Fk_ProTyp;
+				return this._Use_Name;
 			}
 			set
 			{
-				if ((this._Pro_Fk_ProTyp != value))
+				if ((this._Use_Name != value))
 				{
-					this._Pro_Fk_ProTyp = value;
+					this._Use_Name = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Pro_Code
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Use_Password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Use_Password
 		{
 			get
 			{
-				return this._Pro_Code;
+				return this._Use_Password;
 			}
 			set
 			{
-				if ((this._Pro_Code != value))
+				if ((this._Use_Password != value))
 				{
-					this._Pro_Code = value;
+					this._Use_Password = value;
+				}
+			}
+		}
+	}
+	
+	public partial class BOP_FAJAS_spReporteCompraRangoFechasResult
+	{
+		
+		private System.Nullable<System.DateTime> _FechaInicio;
+		
+		private System.Nullable<System.DateTime> _FechaFinal;
+		
+		private System.DateTime _BuyBil_Date;
+		
+		private double _BuyBil_Total;
+		
+		private string _BuyBil_Description;
+		
+		private int _BuyBil_PK;
+		
+		public BOP_FAJAS_spReporteCompraRangoFechasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInicio", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaInicio
+		{
+			get
+			{
+				return this._FechaInicio;
+			}
+			set
+			{
+				if ((this._FechaInicio != value))
+				{
+					this._FechaInicio = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Description", DbType="NVarChar(50)")]
-		public string Pro_Description
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaFinal", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FechaFinal
 		{
 			get
 			{
-				return this._Pro_Description;
+				return this._FechaFinal;
 			}
 			set
 			{
-				if ((this._Pro_Description != value))
+				if ((this._FechaFinal != value))
 				{
-					this._Pro_Description = value;
+					this._FechaFinal = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Pro_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime BuyBil_Date
 		{
 			get
 			{
-				return this._Pro_Name;
+				return this._BuyBil_Date;
 			}
 			set
 			{
-				if ((this._Pro_Name != value))
+				if ((this._BuyBil_Date != value))
 				{
-					this._Pro_Name = value;
+					this._BuyBil_Date = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_Photo", DbType="NVarChar(50)")]
-		public string Pro_Photo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Total", DbType="Float NOT NULL")]
+		public double BuyBil_Total
 		{
 			get
 			{
-				return this._Pro_Photo;
+				return this._BuyBil_Total;
 			}
 			set
 			{
-				if ((this._Pro_Photo != value))
+				if ((this._BuyBil_Total != value))
 				{
-					this._Pro_Photo = value;
+					this._BuyBil_Total = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pro_SalePrice", DbType="Float NOT NULL")]
-		public double Pro_SalePrice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_Description", DbType="NVarChar(100)")]
+		public string BuyBil_Description
 		{
 			get
 			{
-				return this._Pro_SalePrice;
+				return this._BuyBil_Description;
 			}
 			set
 			{
-				if ((this._Pro_SalePrice != value))
+				if ((this._BuyBil_Description != value))
 				{
-					this._Pro_SalePrice = value;
+					this._BuyBil_Description = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProTyp_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ProTyp_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyBil_PK", DbType="Int NOT NULL")]
+		public int BuyBil_PK
 		{
 			get
 			{
-				return this._ProTyp_Name;
+				return this._BuyBil_PK;
 			}
 			set
 			{
-				if ((this._ProTyp_Name != value))
+				if ((this._BuyBil_PK != value))
 				{
-					this._ProTyp_Name = value;
+					this._BuyBil_PK = value;
 				}
 			}
 		}

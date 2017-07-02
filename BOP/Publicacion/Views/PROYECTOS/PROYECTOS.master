@@ -1,0 +1,6 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/BOP.Master" AutoEventWireup="true" 
+    CodeBehind="PROYECTOS.master.cs" Inherits="BOP.Views.PROYECTOS.PROYECTOS" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="CPHBOP" runat="server">
+    <asp:ContentPlaceHolder ID="CPHPROYECTOS" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

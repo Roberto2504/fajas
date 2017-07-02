@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FAJAS\Compras\MantenimientoCompras.cs" />
     <Compile Include="FAJAS\Productos\MantenimientoProductos.cs" />
     <Compile Include="FAJAS\Seguridad\MantenimientoSeguridad.cs" />
+    <Compile Include="FAJAS\Ventas\MantenimientoVentas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

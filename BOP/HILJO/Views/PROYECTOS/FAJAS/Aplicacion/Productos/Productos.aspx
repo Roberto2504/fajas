@@ -7,8 +7,9 @@
                   
                                       
             </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <a href="MantenimientoProducto.aspx?Pr=" class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-plus text-white"></i></a>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
+                <a href="MantenimientoProducto.aspx?Pr=" class="btn btn-danger pull-right m-l-20">Agregar Producto</a>
+               
                 <ol class="breadcrumb">  
                     <li><a href="#">Inicio</a></li>
                     <li class="active">Productos</li>
@@ -19,14 +20,21 @@
         
         <div class="row">
             <div class="col-md-12 col-xs-12"> 
-                    <% foreach (BOP.BO.BOP_FAJAS_spListarProductosResult dato in BOP.Views.PROYECTOS.FAJAS.Aplicacion.Productos.Productos.lProductos) { %>
+                    <%int i = 0;
+                        foreach (BOP.BO.BOP_FAJAS_spListarProductosResult dato in BOP.Views.PROYECTOS.FAJAS.Aplicacion.Productos.Productos.lProductos)
+                        { %>
             <!-- .col -->
-            
+            <%  if (i == 0)
+                    { %>
+                <div class="row">
+                    <%} i++;%>
+
             <div class="col-md-4 col-sm-4">
                 <div class="white-box"> 
                     <div class="row"> 
                         <div class="col-md-4 col-sm-4 text-center">
-                                    <a href="MantenimientoProducto.aspx?Pr=<%:dato.Pro_Pk %>"><img src="../../../plugins/images/20170224_161556.jpg" alt="user" class="img-circle img-responsive"></a>
+                                    <a href="MantenimientoProducto.aspx?Pr=<%:dato.Pro_Pk %>">
+                                        <img src="<%: dato.Pro_Photo %>"" alt="user" class="img-circle img-responsive"></a>
                                 </div>
                         <div class="col-md-8 col-sm-8">
                             <h3 class="box-title m-b-0"><%: dato.Pro_Name %></h3>
@@ -35,7 +43,7 @@
                                 <address>
                                     Descripción: <%:dato.Pro_Description %> <br />
                                     <abbr title="Identificador del Producto">CÓDIGO: </abbr> <%: dato.Pro_Code %> <br/>
-                                    <abbr title="Precio">₡: </abbr> <%: dato.Pro_SalePrice %> <br/>
+                                    <abbr title="Precio">₡: </abbr> <%: dato.Pro_SalePrice.ToString("N1") %> <br/>
                                          
                                 </address>
                             </p>
@@ -43,10 +51,16 @@
                     </div> 
                 </div>
             </div>
+                    <% 
+                        if (i == 3)
+                        { %>
+                </div> 
+               <%i = 0;}  %>
             <!-- /.col -->   
              <% } %>
                  
             </div>
         </div>
        </div>
+
 </asp:Content>
