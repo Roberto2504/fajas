@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FAJAS_BD" Class="FAJA_MODELDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JINTAN\SQLEXPRESS;Initial Catalog=FAJAS_BD;Persist Security Info=True;User ID=sa" SettingsObjectName="BOP.BO.Properties.Settings" SettingsPropertyName="FAJAS_BDConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-UNGN8I1\SQLEXPRESS;Initial Catalog=FAJAS_BD;Integrated Security=True" SettingsObjectName="BOP.BO.Properties.Settings" SettingsPropertyName="FAJAS_BDConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Buy_Bill" Member="Buy_Bill">
     <Type Name="Buy_Bill">
       <Column Name="BuyBil_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
@@ -10,23 +10,11 @@
       <Association Name="Buy_Bill_Detail_Buy_Bill" Member="Detail_Buy_Bill" ThisKey="BuyBil_PK" OtherKey="DetBuyBil_FK_BuyBil" Type="Detail_Buy_Bill" />
     </Type>
   </Table>
-  <Table Name="dbo.Sale_Bill" Member="Sale_Bill">
-    <Type Name="Sale_Bill">
-      <Column Name="SalBil_ClientName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalBil_IdClient" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalBil_PhoneClient" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalBil_Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalBil_GrossTotal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="SalBil_Tax" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="SalBil_NetTotal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="SalBil_ClientEmail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SalBil_Discount" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SalBil_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="SalBil_Pk" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SalBil_FK_Com" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SalBil_Status" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
-      <Association Name="Sale_Bill_Detail_Sale_Bill" Member="Detail_Sale_Bill" ThisKey="SalBil_Pk" OtherKey="DetBil_FK_BuyBil" Type="Detail_Sale_Bill" />
-      <Association Name="Company_Sale_Bill" Member="Company" ThisKey="SalBil_FK_Com" OtherKey="Com_PK" Type="Company" IsForeignKey="true" />
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="Use_Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Use_Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Use_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Company" Member="Company">
@@ -59,8 +47,8 @@
       <Column Name="DetBil_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DetBil_FK_BuyBil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DetBil_FK_ProDet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Sale_Bill_Detail_Sale_Bill" Member="Sale_Bill" ThisKey="DetBil_FK_BuyBil" OtherKey="SalBil_Pk" Type="Sale_Bill" IsForeignKey="true" />
       <Association Name="Product_Detail_Detail_Sale_Bill" Member="Product_Detail" ThisKey="DetBil_FK_ProDet" OtherKey="ProDet_PK" Type="Product_Detail" IsForeignKey="true" />
+      <Association Name="Sale_Bill_Detail_Sale_Bill" Member="Sale_Bill" ThisKey="DetBil_FK_BuyBil" OtherKey="SalBil_Pk" Type="Sale_Bill" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Product" Member="Product">
@@ -96,14 +84,14 @@
       <Association Name="Product_Detail_Detail_Sale_Bill" Member="Detail_Sale_Bill" ThisKey="ProDet_PK" OtherKey="DetBil_FK_ProDet" Type="Detail_Sale_Bill" />
       <Association Name="Product_Product_Detail" Member="Product" ThisKey="ProDet_FKk_Pro" OtherKey="Pro_Pk" Type="Product" IsForeignKey="true" />
       <Association Name="Product_Color_Product_Detail" Member="Product_Color" ThisKey="ProDet_FK_ProCol" OtherKey="ProCol_PK" Type="Product_Color" IsForeignKey="true" />
-      <Association Name="Product_Size_Product_Detail" Member="Product_Size" ThisKey="ProDet_FKk_Pro" OtherKey="Siz_Pk" Type="Product_Size" IsForeignKey="true" />
+      <Association Name="Product_Size_Product_Detail" Member="Product_Size" ThisKey="ProDet_FK_ProSiz" OtherKey="Siz_Pk" Type="Product_Size" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Product_Size" Member="Product_Size">
     <Type Name="Product_Size">
       <Column Name="Siz_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Siz_Pk" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="Product_Size_Product_Detail" Member="Product_Detail" ThisKey="Siz_Pk" OtherKey="ProDet_FKk_Pro" Type="Product_Detail" />
+      <Association Name="Product_Size_Product_Detail" Member="Product_Detail" ThisKey="Siz_Pk" OtherKey="ProDet_FK_ProSiz" Type="Product_Detail" />
     </Type>
   </Table>
   <Table Name="dbo.Product_Type" Member="Product_Type">
@@ -113,11 +101,23 @@
       <Association Name="Product_Type_Product" Member="Product" ThisKey="ProTyp_Pk" OtherKey="Pro_Fk_ProTyp" Type="Product" />
     </Type>
   </Table>
-  <Table Name="dbo.Usuarios" Member="Usuarios">
-    <Type Name="Usuarios">
-      <Column Name="Use_Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Use_Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Use_PK" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.Sale_Bill" Member="Sale_Bill">
+    <Type Name="Sale_Bill">
+      <Column Name="SalBil_ClientName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalBil_IdClient" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalBil_PhoneClient" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalBil_Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalBil_GrossTotal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SalBil_Tax" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SalBil_NetTotal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SalBil_ClientEmail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalBil_Discount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SalBil_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SalBil_Pk" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SalBil_FK_Com" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SalBil_Status" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Association Name="Sale_Bill_Detail_Sale_Bill" Member="Detail_Sale_Bill" ThisKey="SalBil_Pk" OtherKey="DetBil_FK_BuyBil" Type="Detail_Sale_Bill" />
+      <Association Name="Company_Sale_Bill" Member="Company" ThisKey="SalBil_FK_Com" OtherKey="Com_PK" Type="Company" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.BOP_FAJAS_spBuscarProductos" Method="BOP_FAJAS_spBuscarProductos">

@@ -25,7 +25,7 @@
                             <asp:UpdatePanel runat="server" ID="upInformacionProducto">
                             <ContentTemplate>
                             <div class="user-bg">  
-                                <asp:ImageButton data-toggle="modal" data-target="#ModalMantenimientoImagen"
+                                <asp:ImageButton data-toggle="modal" ImageUrl="~/Views/PROYECTOS/plugins/images/error-bg.jpg" data-target="#ModalMantenimientoImagen"
                                     runat="server" ID="imgProducto" Width="100%" Height="100%" alt="user" />
                             </div>
                             <div class="user-btm-box">
@@ -148,14 +148,14 @@
                                                 ID="txtNombre" required="true" />
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label for="txtCodigo" class="control-label">Codigo</label>
+                                            <label for="txtCodigo" class="control-label">Código</label>
                                             <asp:TextBox MaxLength="30" runat="server" type="text" class="form-control"
                                                 ID="txtCodigo" required="true" />
                                         </div>
                                     </div>
                                     <div class="row"> 
                                         <div class="form-group col-sm-12">
-                                            <label for="txtDescripcion" class="control-label">Descripcion</label>
+                                            <label for="txtDescripcion" class="control-label">Descripción</label>
                                             <asp:TextBox MaxLength="100"  runat="server" type="multiline" class="form-control"
                                                 ID="txtDescripcion" required="true" />
                                         </div>

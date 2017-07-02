@@ -34,6 +34,7 @@
                         <ContentTemplate>
                             <div class="user-btm-box">
                                 <div class="form-group form-material">
+                                    <h3><label for="txtNombre" class="control-label">INFORMACIÓN DEL CLIENTE:</label></h3>
                                     <div class="row">
                                         <div class="form-group col-sm-3">
                                             <label for="txtNombre" class="control-label">NOMBRE</label>
@@ -47,7 +48,7 @@
 
                                         </div>
                                         <div class="form-group col-sm-3">
-                                            <label for="txtTelefono" class="control-label">TELEFONO</label>
+                                            <label for="txtTelefono" class="control-label">TELÉFONO</label>
                                             <asp:TextBox MaxLength="50" runat="server" type="text" class="form-control"
                                                 ID="txtTelefono" />
                                         </div>
@@ -58,6 +59,8 @@
 
                                         </div>
                                     </div>
+                                    
+                                    <hr/>
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label for="txtDescripcion" class="control-label">DESCRIPCIÓN</label>
