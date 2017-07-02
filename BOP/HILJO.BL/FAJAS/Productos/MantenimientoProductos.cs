@@ -101,6 +101,7 @@ namespace BOP.BL.FAJAS.Productos
             Producto.Pro_Description = pDescripcion;
             Producto.Pro_SalePrice = pPrecio;
             Producto.Pro_Fk_ProTyp = pTipo;
+            Producto.Pro_Photo = "../img/error-bg.jpg";
             Producto.Pro_Status = "A";
             dc.Product.InsertOnSubmit(Producto);
             dc.SubmitChanges();
@@ -126,7 +127,7 @@ namespace BOP.BL.FAJAS.Productos
             Producto.ProDet_FKk_Pro = pro;
             Producto.ProDet_FK_ProCol = col;
             Producto.ProDet_FK_ProSiz = siz;
-            Producto.ProDet_Quantity = qua; 
+            Producto.ProDet_Quantity = qua;
             dc.SubmitChanges();
         }
         public void EliminarDetalle(int det)

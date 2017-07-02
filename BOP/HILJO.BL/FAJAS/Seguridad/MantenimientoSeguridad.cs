@@ -66,7 +66,7 @@ namespace BOP.BL.FAJAS.Seguridad
             }
             catch(Exception e)
             {
-
+                
             }
             if (Usuario.Use_Name != null)  return true;
              
