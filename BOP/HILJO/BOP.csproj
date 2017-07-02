@@ -41,6 +41,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\MySQL\MySQL Connector Net 6.5.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
@@ -63,9 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\Compras.aspx" />
+    <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\MantenimientoCompra.aspx" />
+    <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\img\img.png" />
     <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Inicio\Inicio.aspx" />
     <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Productos\MantenimientoProducto.aspx" />
     <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Productos\Productos.aspx" />
+    <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\MantenimientoVenta.aspx" />
+    <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\Ventas.aspx" />
     <Content Include="Views\PROYECTOS\plugins\bower_components\Animatedbg\css\component.css" />
     <Content Include="Views\PROYECTOS\plugins\bower_components\Animatedbg\css\demo.css" />
     <Content Include="Views\PROYECTOS\plugins\bower_components\Animatedbg\css\normalize.css" />
@@ -2095,6 +2102,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FAJAS_BDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FAJAS_BDDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\BOP.Master.cs">
       <DependentUpon>BOP.Master</DependentUpon>
@@ -2109,6 +2121,20 @@
     </Compile>
     <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Aplicacion.master.designer.cs">
       <DependentUpon>Aplicacion.master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\Compras.aspx.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\Compras.aspx.designer.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\MantenimientoCompra.aspx.cs">
+      <DependentUpon>MantenimientoCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\MantenimientoCompra.aspx.designer.cs">
+      <DependentUpon>MantenimientoCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Inicio\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -2137,6 +2163,20 @@
     </Compile>
     <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Seguridad\Seguridad.aspx.designer.cs">
       <DependentUpon>Seguridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\MantenimientoVenta.aspx.cs">
+      <DependentUpon>MantenimientoVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\MantenimientoVenta.aspx.designer.cs">
+      <DependentUpon>MantenimientoVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\PROYECTOS\FAJAS\FAJAS.master.cs">
       <DependentUpon>FAJAS.master</DependentUpon>
@@ -2719,6 +2759,17 @@
     <Content Include="Views\PROYECTOS\plugins\images\assets\photothumb.db" />
     <Content Include="Views\PROYECTOS\plugins\images\large\.DS_Store" />
     <Content Include="Views\BOP.Master" />
+    <Content Include="FAJAS_BDDataSet.xsc">
+      <DependentUpon>FAJAS_BDDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="FAJAS_BDDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FAJAS_BDDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="FAJAS_BDDataSet.xss">
+      <DependentUpon>FAJAS_BDDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Publicar.pubxml" />
     <Content Include="Views\PROYECTOS\PROYECTOS.master" />
     <Content Include="Views\PROYECTOS\FAJAS\FAJAS.master" />
@@ -2988,6 +3039,7 @@
     <Content Include="Views\PROYECTOS\FAJAS\less\variables.less" />
     <Content Include="Views\PROYECTOS\FAJAS\less\widgets.less" />
     <Content Include="Views\PROYECTOS\FAJAS\Aplicacion\Aplicacion.master" />
+    <None Include="Properties\PublishProfiles\PublicarBOP.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2997,6 +3049,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PROYECTOS\FAJAS\Aplicacion\Facturas\" />
+    <Folder Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\Facturas\" />
     <Folder Include="Views\PROYECTOS\plugins\bower_components\etc\" />
   </ItemGroup>
   <ItemGroup>
@@ -3008,6 +3062,11 @@
       <Project>{94a6ee07-57ad-427c-91e4-0096e6e406ad}</Project>
       <Name>BOP.BO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PROYECTOS\FAJAS\Aplicacion\Compra\ComprasPorFecha.rdlc" />
+    <EmbeddedResource Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\FacturaVenta.rdlc" />
+    <EmbeddedResource Include="Views\PROYECTOS\FAJAS\Aplicacion\Venta\VentasPorFechas.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

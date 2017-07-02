@@ -26,32 +26,11 @@ namespace BOP.BO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JINTAN\\SQLEXPRESS;Initial Catalog=HILJO_DB;User ID=sa")]
-        public string HILJO_DBConnectionString {
-            get {
-                return ((string)(this["HILJO_DBConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JINTAN\\SQLEXPRESS;Initial Catalog=HILJO_DB;Persist Security Info=True" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JINTAN\\SQLEXPRESS;Initial Catalog=FAJAS_BD;Persist Security Info=True" +
             ";User ID=sa")]
-        public string HILJO_DBConnectionString1 {
+        public string FAJAS_BDConnectionString {
             get {
-                return ((string)(this["HILJO_DBConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JINTAN\\SQLEXPRESS;Initial Catalog=HILJO_DB;Persist Security Info=True" +
-            ";User ID=sa;Password=1234")]
-        public string HILJO_DBConnectionString2 {
-            get {
-                return ((string)(this["HILJO_DBConnectionString2"]));
+                return ((string)(this["FAJAS_BDConnectionString"]));
             }
         }
         
@@ -59,10 +38,10 @@ namespace BOP.BO.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JINTAN\\SQLEXPRESS;Initial Catalog=FAJAS_BD;Persist Security Info=True" +
-            ";User ID=sa")]
-        public string FAJAS_BDConnectionString {
+            ";User ID=sa;Password=1234")]
+        public string FAJAS_BDConnectionString1 {
             get {
-                return ((string)(this["FAJAS_BDConnectionString"]));
+                return ((string)(this["FAJAS_BDConnectionString1"]));
             }
         }
     }
